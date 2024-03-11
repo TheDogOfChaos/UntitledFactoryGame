@@ -2,6 +2,7 @@
 
 package io.thedogofchaos.fmp;
 
+
 public class NoiseGenerator {
 
     public static double[] blend(double[] noise1, double[] noise2, double persistence)
@@ -17,7 +18,7 @@ public class NoiseGenerator {
         return null;
     }
 
-    public static double[] normalize(double[] noise)
+    public static double[] normalise(double[] noise)
     {
         if (noise != null && noise.length > 0)
         {
