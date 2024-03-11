@@ -1,7 +1,0 @@
-pack.png
-	size: 32, 32
-	filter: Linear, Linear
-ehat
-	bounds: 1, 4, 16, 16
-white-pixel
-	bounds: 1, 1, 1, 1
