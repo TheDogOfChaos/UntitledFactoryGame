@@ -49,6 +49,7 @@ public class FMPGame extends Game {
 		font = new BitmapFont();
 		batch = new SpriteBatch();
 
+		//TODO: Move this to its own class.
 		{
 			tiles = new Texture(Gdx.files.internal("tiles.png"));
 			TextureRegion[][] splitTiles = TextureRegion.split(tiles, 32, 32);
