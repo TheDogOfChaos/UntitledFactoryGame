@@ -14,25 +14,28 @@ public class WorldGenerator {
     private static TiledMap map;
 
     //TODO: make this use NoiseGenerator instead of randomly selecting tiles
-    public static TiledMap GenerateWorld(int w, int h, int tW, int tH, int pE) {
-        tiles = new Texture(Gdx.files.internal("tiles.png"));
-        TextureRegion[][] splitTiles = TextureRegion.split(tiles, tW, tH);
+    public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int perlinExponent, int perlLayers) {
+        tiles = new Texture(Gdx.files.internal("spriteAtlas.png"));
+        TextureRegion[][] splitTiles = TextureRegion.split(tiles, tileWidth, tileHeight);
         map = new TiledMap();
         MapLayers layers = map.getLayers();
 
-        for (int l = 0; l < 20; l++) {
-            int tile = 0;
-            double[] perl = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(w,h,pE));
-            TiledMapTileLayer layer = new TiledMapTileLayer(w, h, tW, tH);
-            for (int x = 0; x < w; x++){
-                for (int y = 0; y < h; y++){
-                    Cell cell = new Cell();
-                    if (Math.round(perl[x+y]) == 1) {
-                        cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
-                    } else if (Math.round(perl[x+y]) == 0) {
-                        cell.setTile(new StaticTiledMapTile(splitTiles[4][0]));
-                    }
-                    layer.setCell(x, y, cell);
+        for (int l = 0; l < perlLayers; l++) {
+            double[] perl = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth,mapHeight,perlinExponent));
+            TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
+            int x = 0; int y = 0;
+            for (double v : perl) {
+                Cell cell = new Cell();
+                if (Math.round(v) == 1) {
+                    cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
+                } else if (Math.round(v) == 0) {
+                    cell.setTile(new StaticTiledMapTile(splitTiles[0][0]));
+                }
+                layer.setCell(x, y, cell);
+                x++;
+                if (x == mapWidth) {
+                    y++;
+                    x = 0;
                 }
             }
 /*
