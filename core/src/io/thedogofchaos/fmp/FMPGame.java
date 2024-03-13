@@ -66,7 +66,7 @@ public class FMPGame extends Game {
 	}
 	@Override
 	public void render () {
-		ScreenUtils.clear(100f / 255f, 100f / 255f, 250f / 255f, 1f);
+		ScreenUtils.clear(100f / 255f, 100f / 255f, 100f / 255f, 1f);
 		camera.update();
 		renderer.setView(camera);
 		renderer.render();
