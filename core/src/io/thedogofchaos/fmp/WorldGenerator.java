@@ -14,16 +14,30 @@ public class WorldGenerator {
     private static TiledMap map;
 
     //TODO: make this use NoiseGenerator instead of randomly selecting tiles
-    public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int perlinExponent, int perlLayers) {
+    public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int exponent, int mapLayers, String noiseType) {
         tiles = new Texture(Gdx.files.internal("spriteAtlas.png"));
         TextureRegion[][] splitTiles = TextureRegion.split(tiles, tileWidth, tileHeight);
         map = new TiledMap();
         MapLayers layers = map.getLayers();
 
-        for (int l = 0; l < perlLayers; l++) {
-            double[] perl = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth,mapHeight,perlinExponent));
+        for (int l = 0; l < mapLayers; l++) {
+            double[] perl;
+            switch (noiseType) {
+                case "perlin":
+                    perl = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth, mapHeight, exponent));
+                    break;
+                case "smooth":
+                     perl = NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, exponent));
+                    break;
+                case "turbulence":
+                     perl = NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, exponent));
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + noiseType);
+            }
             TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
-            int x = 0; int y = 0;
+            int x = 0;
+            int y = 0;
             for (double v : perl) {
                 Cell cell = new Cell();
                 if (Math.round(v) == 1) {

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import static java.lang.System.out;
 
 public class FMPGame extends Game {
 	private TiledMapRenderer renderer;
@@ -31,7 +32,7 @@ public class FMPGame extends Game {
 		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, (w / h) * 512, 512);
+		camera.setToOrtho(false, (w / h) * 1024, 1024);
 		camera.update();
 		font = new BitmapFont();
 		batch = new SpriteBatch();
@@ -46,19 +47,22 @@ public class FMPGame extends Game {
 			@Override
 			public boolean keyDown(int keycode) {
 				if (keycode == Input.Keys.SPACE) {
-					System.out.println("space pressed, generating new map");
-					LoadNewMap();
+					String[] noiseType = {"perlin", "smooth", "turbulence"};
+					int i = (int) Math.round(Math.random()*2);
+					LoadNewMap(noiseType[i]);
+					out.println("space pressed, generating new map with type " + noiseType[i]);
 				}
 				return true;
 			}
 		});
 		Gdx.input.setInputProcessor(inputMultiplexer);
 
-		LoadNewMap();
+		LoadNewMap("perlin");
 	}
 
-	private void LoadNewMap() {
-		map = WorldGenerator.GenerateWorld(64,64, 16,16, 7, 1);
+	private void LoadNewMap(String genType) {
+		out.println(genType);
+		map = WorldGenerator.GenerateWorld(128,128, 16,16, 5, 1, genType);
 		renderer = new OrthogonalTiledMapRenderer(map);
 	}
 	@Override
