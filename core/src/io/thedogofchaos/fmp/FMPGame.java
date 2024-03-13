@@ -32,7 +32,7 @@ public class FMPGame extends Game {
 		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, (w / h) * 1024, 1024);
+		camera.setToOrtho(false, (w / h) * 512, 512);
 		camera.update();
 		font = new BitmapFont();
 		batch = new SpriteBatch();
@@ -56,7 +56,6 @@ public class FMPGame extends Game {
 			}
 		});
 		Gdx.input.setInputProcessor(inputMultiplexer);
-
 		LoadNewMap("perlin");
 	}
 
@@ -67,7 +66,6 @@ public class FMPGame extends Game {
 	}
 	@Override
 	public void render () {
-
 		ScreenUtils.clear(100f / 255f, 100f / 255f, 250f / 255f, 1f);
 		camera.update();
 		renderer.setView(camera);

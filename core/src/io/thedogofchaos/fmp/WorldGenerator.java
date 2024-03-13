@@ -15,11 +15,24 @@ public class WorldGenerator {
 
     //TODO: make this use NoiseGenerator instead of randomly selecting tiles
     public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int exponent, int mapLayers, String noiseType) {
+        int x = 0;
+        int y = 0;
         tiles = new Texture(Gdx.files.internal("spriteAtlas.png"));
         TextureRegion[][] splitTiles = TextureRegion.split(tiles, tileWidth, tileHeight);
         map = new TiledMap();
+        TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
         MapLayers layers = map.getLayers();
-
+        for (int i = 0; i<(mapWidth*mapHeight); i++) {
+            Cell cell = new Cell();
+            cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
+            layer.setCell(x, y, cell);
+            x++;
+            if (x == mapWidth) {
+                y++;
+                x = 0;
+            }
+        }
+        layers.add(layer);
         for (int l = 0; l < mapLayers; l++) {
             double[] perl;
             switch (noiseType) {
@@ -35,15 +48,11 @@ public class WorldGenerator {
                 default:
                     throw new IllegalStateException("Unexpected value: " + noiseType);
             }
-            TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
-            int x = 0;
-            int y = 0;
+            x=0;y=0;
             for (double v : perl) {
                 Cell cell = new Cell();
                 if (Math.round(v) == 1) {
-                    cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
-                } else if (Math.round(v) == 0) {
-                    cell.setTile(new StaticTiledMapTile(splitTiles[0][0]));
+                    cell.setTile(new StaticTiledMapTile(splitTiles[0][1]));
                 }
                 layer.setCell(x, y, cell);
                 x++;
@@ -52,20 +61,9 @@ public class WorldGenerator {
                     x = 0;
                 }
             }
-/*
-            for (int x = 0; x < w; x++) {
-                double tX = perl[x*h];
-                for (int y = 0; y < h; y++) {
-                    double tY = perl[y];
-                    Cell cell = new Cell();
-                    if perl[y]
-                    cell.setTile(new StaticTiledMapTile(splitTiles[(int) tY][(int) tX]));
-                    layer.setCell(x, y, cell);
-                }
-            }
-*/
             layers.add(layer);
         }
+
         return map;
     }
 
