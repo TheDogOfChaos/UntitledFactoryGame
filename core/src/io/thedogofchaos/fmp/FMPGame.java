@@ -14,15 +14,15 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import static java.lang.System.out;
 
 public class FMPGame extends Game {
-	private TiledMapRenderer renderer;
+	private TiledMapRenderer mapRenderer;
 	private OrthographicCamera camera;
 	private BitmapFont font;
 	private SpriteBatch batch;
 	private TiledMap map;
 	private Stage stage;
-
 	public static InputMultiplexer inputMultiplexer = new InputMultiplexer();
-	
+	int[] backgroundLayers = { 0 };
+	int[] foregroundLayers = { 1 };
 	public FMPGame() {
 
 	}
@@ -30,6 +30,8 @@ public class FMPGame extends Game {
 	public void create () {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
+
+
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, (w / h) * 512, 512);
@@ -61,15 +63,16 @@ public class FMPGame extends Game {
 
 	private void LoadNewMap(String genType) {
 		out.println(genType);
-		map = WorldGenerator.GenerateWorld(128,128, 16,16, 5, 1, genType);
-		renderer = new OrthogonalTiledMapRenderer(map);
+		map = WorldGenerator.GenerateWorld(128,128, 16,16, 5, 2, genType);
+		// float unitScale = 1 / 16f;
+		mapRenderer = new OrthogonalTiledMapRenderer(map);
 	}
 	@Override
 	public void render () {
-		ScreenUtils.clear(100f / 255f, 100f / 255f, 100f / 255f, 1f);
+		ScreenUtils.clear(0,0,0, 1f);
 		camera.update();
-		renderer.setView(camera);
-		renderer.render();
+		mapRenderer.setView(camera);
+		mapRenderer.render();
 		stage.act();
 		stage.draw();
 		batch.begin();

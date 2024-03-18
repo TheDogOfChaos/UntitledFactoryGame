@@ -12,17 +12,15 @@ import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 public class WorldGenerator {
     private static Texture tiles;
     private static TiledMap map;
-
-    //TODO: make this use NoiseGenerator instead of randomly selecting tiles
-    public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int exponent, int mapLayers, String noiseType) {
-        int x = 0;
-        int y = 0;
+    public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int noiseExponent, int mapLayers, String noiseType) {
+        int x; int y; int l;
         tiles = new Texture(Gdx.files.internal("spriteAtlas.png"));
         TextureRegion[][] splitTiles = TextureRegion.split(tiles, tileWidth, tileHeight);
         map = new TiledMap();
         TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
         MapLayers layers = map.getLayers();
-        for (int i = 0; i<(mapWidth*mapHeight); i++) {
+        x=0;y=0;
+        for (int i = 0; i < (mapWidth * mapHeight); i++) {
             Cell cell = new Cell();
             cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
             layer.setCell(x, y, cell);
@@ -33,23 +31,22 @@ public class WorldGenerator {
             }
         }
         layers.add(layer);
-        for (int l = 0; l < mapLayers; l++) {
-            double[] perl;
+        for (l = 0; l < mapLayers; l++) {
+            double[] noise;
             switch (noiseType) {
                 case "perlin":
-                    perl = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth, mapHeight, exponent));
+                    noise = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth, mapHeight, noiseExponent));
                     break;
                 case "smooth":
-                     perl = NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, exponent));
+                     noise = NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, noiseExponent));
                     break;
                 case "turbulence":
-                     perl = NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, exponent));
+                     noise = NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, noiseExponent));
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + noiseType);
             }
-            x=0;y=0;
-            for (double v : perl) {
+            for (double v : noise) {
                 Cell cell = new Cell();
                 if (Math.round(v) == 1) {
                     cell.setTile(new StaticTiledMapTile(splitTiles[0][1]));
@@ -63,9 +60,7 @@ public class WorldGenerator {
             }
             layers.add(layer);
         }
-
         return map;
     }
-
 }
 
