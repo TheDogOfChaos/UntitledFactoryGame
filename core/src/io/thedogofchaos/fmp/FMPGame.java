@@ -63,7 +63,7 @@ public class FMPGame extends Game {
 
 	private void LoadNewMap(String genType) {
 		out.println(genType);
-		map = WorldGenerator.GenerateWorld(128,128, 16,16, 5, 2, genType);
+		map = WorldGenerator.GenerateWorld(128,128, 16,16, 5, 3, genType);
 		// float unitScale = 1 / 16f;
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
 	}

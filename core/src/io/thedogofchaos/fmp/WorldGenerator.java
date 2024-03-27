@@ -31,6 +31,7 @@ public class WorldGenerator {
             }
         }
         layers.add(layer);
+        x=0;y=0;
         for (l = 0; l < mapLayers; l++) {
             double[] noise;
             switch (noiseType) {
@@ -59,6 +60,7 @@ public class WorldGenerator {
                 }
             }
             layers.add(layer);
+            System.out.println(map);
         }
         return map;
     }
