@@ -22,7 +22,7 @@ public class WorldGenerator {
         map = new TiledMap();
         TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
         MapLayers layers = map.getLayers();
-        for (int i = 0; i<(mapWidth*mapHeight); i++) {
+        for (int i = 0; i<(mapWidth*mapHeight); i++) { // floor gen
             Cell cell = new Cell();
             cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
             layer.setCell(x, y, cell);
@@ -33,22 +33,23 @@ public class WorldGenerator {
             }
         }
         layers.add(layer);
-        for (int l = 0; l < mapLayers; l++) {
+        for (int l = 0; l < mapLayers; l++) { // wall gen
             double[] perl;
             switch (noiseType) {
                 case "perlin":
                     perl = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth, mapHeight, exponent));
                     break;
                 case "smooth":
-                     perl = NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, exponent));
+                    perl = NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, exponent));
                     break;
                 case "turbulence":
-                     perl = NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, exponent));
+                    perl = NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, exponent));
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + noiseType);
             }
-            x=0;y=0;
+            x = 0;
+            y = 0;
             for (double v : perl) {
                 Cell cell = new Cell();
                 if (Math.round(v) == 1) {
@@ -63,9 +64,7 @@ public class WorldGenerator {
             }
             layers.add(layer);
         }
-
         return map;
     }
-
 }
 
