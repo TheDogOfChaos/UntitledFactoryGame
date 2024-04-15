@@ -1,38 +1,25 @@
 package io.thedogofchaos.fmp;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+
+import java.util.Arrays;
 
 public class WorldGenerator {
-    private static Texture tiles;
-    private static TiledMap map;
-    public static TiledMap GenerateWorld(int mapWidth, int mapHeight, int tileWidth, int tileHeight, int noiseExponent, int mapLayers, String noiseType) {
-        int x; int y; int l;
-        tiles = new Texture(Gdx.files.internal("spriteAtlas.png"));
-        TextureRegion[][] splitTiles = TextureRegion.split(tiles, tileWidth, tileHeight);
-        map = new TiledMap();
-        TiledMapTileLayer layer = new TiledMapTileLayer(mapWidth, mapHeight, tileWidth, tileHeight);
-        MapLayers layers = map.getLayers();
+    // TODO: Rewrite this POS from scratch to make it work.
+    public static void GenerateWorld(int mapWidth, int mapHeight, int noiseExponent, int mapLayers, String noiseType) {
+        int[][][] mapArr = new int[mapLayers][mapWidth][mapHeight]; int x; int y; int l;
         x=0;y=0;
         for (int i = 0; i < (mapWidth * mapHeight); i++) {
-            Cell cell = new Cell();
-            cell.setTile(new StaticTiledMapTile(splitTiles[1][0]));
-            layer.setCell(x, y, cell);
+            mapArr[0][x][y] = 1;
             x++;
             if (x == mapWidth) {
                 y++;
                 x = 0;
             }
         }
-        layers.add(layer);
-        x=0;y=0;
         for (l = 0; l < mapLayers; l++) {
+            x=0;y=0;
             double[] noise;
             switch (noiseType) {
                 case "perlin":
@@ -48,21 +35,22 @@ public class WorldGenerator {
                     throw new IllegalStateException("Unexpected value: " + noiseType);
             }
             for (double v : noise) {
-                Cell cell = new Cell();
                 if (Math.round(v) == 1) {
-                    cell.setTile(new StaticTiledMapTile(splitTiles[0][1]));
+                    mapArr[l][x][y] = 10;
+                    // TODO: Do this next
+                } else if (Math.round((v*2)+0.5)==0.5) {
+                    mapArr[l][x][y] = 9;
+                } else {
+                    mapArr[l][x][y] = 8;
                 }
-                layer.setCell(x, y, cell);
                 x++;
                 if (x == mapWidth) {
                     y++;
                     x = 0;
                 }
             }
-            layers.add(layer);
-            System.out.println(map);
+            System.out.println(Arrays.deepToString(mapArr));
         }
-        return map;
     }
 }
 
