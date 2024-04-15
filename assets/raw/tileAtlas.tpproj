@@ -1,6 +1,6 @@
 name=tileAtlas
 filename=
-output=../textures
+output=../textures/atlas
 
 alias=true
 alphaThreshold=0
