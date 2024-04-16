@@ -14,15 +14,12 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import static java.lang.System.out;
 
 public class FMPGame extends Game {
-	private TiledMapRenderer renderer;
+	private TiledMapRenderer mapRenderer;
 	private OrthographicCamera camera;
 	private BitmapFont font;
 	private SpriteBatch batch;
-	private TiledMap map;
 	private Stage stage;
-
 	public static InputMultiplexer inputMultiplexer = new InputMultiplexer();
-	
 	public FMPGame() {
 
 	}
@@ -32,7 +29,7 @@ public class FMPGame extends Game {
 		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, (w / h) * 512, 512);
+		camera.setToOrtho(false, (w / h) *1024, 1024);
 		camera.update();
 		font = new BitmapFont();
 		batch = new SpriteBatch();
@@ -61,15 +58,12 @@ public class FMPGame extends Game {
 
 	private void LoadNewMap(String genType) {
 		out.println(genType);
-		map = WorldGenerator.GenerateWorld(128,128, 16,16, 5, 1, genType);
-		renderer = new OrthogonalTiledMapRenderer(map);
+		WorldGenerator.GenerateWorld(32,32,1, 5, genType);
 	}
 	@Override
 	public void render () {
-		ScreenUtils.clear(100f / 255f, 100f / 255f, 100f / 255f, 1f);
+		ScreenUtils.clear(0,0,0, 1f);
 		camera.update();
-		renderer.setView(camera);
-		renderer.render();
 		stage.act();
 		stage.draw();
 		batch.begin();
