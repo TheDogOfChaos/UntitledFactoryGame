@@ -1,6 +1,6 @@
 // all credit for this noise class goes to Malbeth: https://stackoverflow.com/a/21208050
 
-package io.thedogofchaos.fmp;
+package io.thedogofchaos.fmp.utils;
 
 
 public class NoiseGenerator {

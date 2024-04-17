@@ -4,13 +4,13 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.thedogofchaos.fmp.world.WorldGenerator;
+
 import static java.lang.System.out;
 
 public class FMPGame extends Game {
@@ -58,7 +58,7 @@ public class FMPGame extends Game {
 
 	private void LoadNewMap(String genType) {
 		out.println(genType);
-		WorldGenerator.GenerateWorld(32,32,1, 5, genType);
+		WorldGenerator.GenerateWorld(32,32,1, 2, genType);
 	}
 	@Override
 	public void render () {

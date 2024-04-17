@@ -1,4 +1,4 @@
-package io.thedogofchaos.fmp;
+package io.thedogofchaos.fmp.utils;
 
 public class ByteConversionUtils {
     public static byte[] doublesToBytes(double[] d) {
