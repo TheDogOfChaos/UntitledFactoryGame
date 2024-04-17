@@ -1,4 +1,4 @@
-package io.thedogofchaos.fmp.utils;
+package io.thedogofchaos.fmp.graphics;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
