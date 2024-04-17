@@ -1,19 +1,25 @@
 tileAtlas.png
-size:128,16
-repeat:none
+	size: 64, 64
+	repeat: none
 darkStoneWall
-bounds:64,0,16,16
+	bounds: 0, 0, 16, 16
+iceFloor
+	bounds: 48, 48, 16, 16
 iceWall
-bounds:96,0,16,16
+	bounds: 16, 16, 16, 16
 ohno
-bounds:48,0,16,16
+	bounds: 0, 16, 16, 16
 saltFloor
-bounds:80,0,16,16
+	bounds: 16, 32, 16, 16
 saltWall
-bounds:16,0,16,16
+	bounds: 0, 32, 16, 16
+sandStoneFloor
+	bounds: 16, 0, 16, 16
 sandStoneWall
-bounds:32,0,16,16
+	bounds: 16, 48, 16, 16
 stoneFloor
-bounds:0,0,16,16
+	bounds: 0, 48, 16, 16
 stoneWall
-bounds:112,0,16,16
+	bounds: 32, 32, 16, 16
+waterFloor
+	bounds: 32, 48, 16, 16

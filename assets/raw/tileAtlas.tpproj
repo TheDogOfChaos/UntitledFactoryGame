@@ -26,15 +26,15 @@ wrapX=ClampToEdge
 wrapY=ClampToEdge
 premultiplyAlpha=false
 grid=false
-square=false
+square=true
 bleed=true
 limitMemory=true
 useIndexes=true
-prettyPrint=false
+prettyPrint=true
 legacyOutput=false
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:../textures/wall/darkStoneWall.png,type:Input,regionName:null},{path:../textures/wall/iceWall.png,type:Input,regionName:null},{path:../textures/wall/saltWall.png,type:Input,regionName:null},{path:../textures/wall/sandStoneWall.png,type:Input,regionName:null},{path:../textures/wall/stoneWall.png,type:Input,regionName:null},{path:../textures/floor/saltFloor.png,type:Input,regionName:null},{path:../textures/floor/stoneFloor.png,type:Input,regionName:null},{path:../textures/ohno.png,type:Input,regionName:null}]
+inputFiles=[{path:../textures/wall/darkStoneWall.png,type:Input,regionName:null},{path:../textures/wall/iceWall.png,type:Input,regionName:null},{path:../textures/wall/saltWall.png,type:Input,regionName:null},{path:../textures/wall/sandStoneWall.png,type:Input,regionName:null},{path:../textures/wall/stoneWall.png,type:Input,regionName:null},{path:../textures/floor/saltFloor.png,type:Input,regionName:null},{path:../textures/floor/stoneFloor.png,type:Input,regionName:null},{path:../textures/ohno.png,type:Input,regionName:null},{path:../textures/floor/iceFloor.png,type:Input,regionName:null},{path:../textures/floor/sandStoneFloor.png,type:Input,regionName:null},{path:../textures/floor/waterFloor.png,type:Input,regionName:null}]
 keepInputFileExtensions=false
 
 
