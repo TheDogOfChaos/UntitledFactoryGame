@@ -2,24 +2,26 @@ package io.thedogofchaos.fmp.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.thedogofchaos.fmp.FMPGame;
+import io.thedogofchaos.fmp.UntitledFactoryGame;
 import io.thedogofchaos.fmp.Vars;
 
-import static io.thedogofchaos.fmp.FMPGame.actorStage;
-import static io.thedogofchaos.fmp.FMPGame.uiTable;
+import static io.thedogofchaos.fmp.UntitledFactoryGame.actorStage;
+import static io.thedogofchaos.fmp.UntitledFactoryGame.uiTable;
 
 public class MainMenu implements Screen {
-    private final FMPGame game;
+    private final UntitledFactoryGame game;
 
-    public MainMenu(FMPGame fmpGame) {
-        this.game = fmpGame;
+    public MainMenu(UntitledFactoryGame UFGame) {
+        this.game = UFGame;
         actorStage = new Stage();
         uiTable = new Table();
         Gdx.input.setInputProcessor(actorStage);
@@ -32,7 +34,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-        Label title = new Label("FMP Title thing", Vars.skin);
+        Image title = new Image(new Texture(Gdx.files.internal("sprites/UFG_Logo.png")));
         uiTable.add(title);
         uiTable.row();
         TextButton startButton = new TextButton("START", Vars.skin);

@@ -8,14 +8,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import io.thedogofchaos.fmp.screen.MainMenu;
 
-public class FMPGame extends Game {
+public class UntitledFactoryGame extends Game {
 	public static SpriteBatch spriteBatch;
 	public static BitmapFont bitmapFont;
 	public static OrthographicCamera gameCamera;
 	public static Stage actorStage;
 	public static Table uiTable;
 
-	public FMPGame() {
+	public UntitledFactoryGame() {
 		System.out.println("[INFO] Game Loading...");
 	}
 
