@@ -2,55 +2,66 @@ package io.thedogofchaos.fmp.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.thedogofchaos.fmp.FMPGame;
 import io.thedogofchaos.fmp.Vars;
 
+import static io.thedogofchaos.fmp.FMPGame.actorStage;
+import static io.thedogofchaos.fmp.FMPGame.uiTable;
+
 public class MainMenu implements Screen {
-    private Stage stage;
-    private Table table;
+    private final FMPGame game;
 
     public MainMenu(FMPGame fmpGame) {
-        stage = new Stage();
-        table = new Table();
-        Gdx.input.setInputProcessor(stage);
+        this.game = fmpGame;
+        actorStage = new Stage();
+        uiTable = new Table();
+        Gdx.input.setInputProcessor(actorStage);
 
-        table.setFillParent(true);
-        table.setDebug(true);
-        stage.addActor(table);
+        uiTable.setFillParent(true);
+        uiTable.setDebug(true);
+        actorStage.addActor(uiTable);
+        Gdx.app.log("INFO","Main Menu Loaded");
     }
 
     @Override
     public void show() {
         Label title = new Label("FMP Title thing", Vars.skin);
-        table.add(title);
-        table.row();
+        uiTable.add(title);
+        uiTable.row();
         TextButton startButton = new TextButton("START", Vars.skin);
-        table.add(startButton);
-        table.row();
+        uiTable.add(startButton);
+        uiTable.row();
         TextButton optionsButton = new TextButton("OPTIONS", Vars.skin);
-        table.add(optionsButton);
-        table.row();
+        uiTable.add(optionsButton);
+        uiTable.row();
         TextButton exitButton = new TextButton("EXIT", Vars.skin);
-        table.add(exitButton);
+        uiTable.add(exitButton);
+
+        startButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent changeEvent, Actor actor) {
+                game.setScreen(new GameWorld());
+            }
+        });
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(1, 1, 1, 1);
-        stage.act(delta);
-        stage.draw();
+        actorStage.act(delta);
+        actorStage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        actorStage.getViewport().update(width, height);
     }
 
     @Override
@@ -70,6 +81,6 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+        actorStage.dispose();
     }
 }

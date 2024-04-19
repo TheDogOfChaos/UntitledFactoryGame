@@ -2,8 +2,8 @@ package io.thedogofchaos.fmp.world.environment.blocks;
 
 import io.thedogofchaos.fmp.world.Block;
 
-public class StaticWall extends Block {
-    public StaticWall(String name){
+public class Wall extends Block {
+    public Wall(String name){
         boolean breakable = false;
         boolean solid = true;
     }

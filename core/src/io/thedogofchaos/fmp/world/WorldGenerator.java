@@ -1,11 +1,8 @@
 package io.thedogofchaos.fmp.world;
 
-import io.thedogofchaos.fmp.utils.NoiseGenerator;
 import io.thedogofchaos.fmp.Vars;
-import java.util.Arrays;
+import io.thedogofchaos.fmp.utils.NoiseGenerator;
 public class WorldGenerator {
-    // TODO: Rewrite this POS from scratch to make it work.
-
     public static void GenerateWorld(int mapWidth, int mapHeight, int noiseExponent, String noiseType) {
         Vars.mapWidth = mapWidth;
         Vars.mapHeight = mapHeight;
@@ -48,7 +45,6 @@ public class WorldGenerator {
                 x = 0;
             }
         }
-        System.out.println(Arrays.deepToString(mapArr));
         Vars.mapData = mapArr;
     }
 }
