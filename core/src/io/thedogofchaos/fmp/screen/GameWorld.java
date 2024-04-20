@@ -28,25 +28,21 @@ public class GameWorld implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0,0,0, 1f);
         gameCamera.update();
-        UntitledFactoryGame.spriteBatch.begin();
+        spriteBatch.begin();
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
-                if (Vars.mapData[0][x][y] == "stoneFloor") {
-                    UntitledFactoryGame.spriteBatch.draw(Vars.worldAtlas.findRegion("stoneFloor"), x * 16, y * 16);
-                }
-                if (Vars.mapData[1][x][y] == "stoneWall") {
-                    UntitledFactoryGame.spriteBatch.draw(Vars.worldAtlas.findRegion("stoneWall"), x * 16, y * 16);
-                }
-                if (Vars.mapData[1][x][y] == "darkStoneWall") {
-                    UntitledFactoryGame.spriteBatch.draw(Vars.worldAtlas.findRegion("darkStoneWall"), x * 16, y * 16);
-                }
-                if (Vars.mapData[1][x][y] == "air") {
-                    UntitledFactoryGame.spriteBatch.draw(Vars.worldAtlas.findRegion("air"), x * 16, y * 16);
-                }
+                // draws floors
+                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[0][x][y]), x * 16, y * 16);
             }
         }
-        //font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
-        UntitledFactoryGame.spriteBatch.end();
+        for (int x = 0; x < Vars.mapWidth; x++) {
+            for (int y = 0; y < Vars.mapHeight; y++) {
+                // draws walls
+                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[1][x][y]), x * 16, y * 16);
+            }
+        }
+        bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
+        spriteBatch.end();
     }
 
     @Override

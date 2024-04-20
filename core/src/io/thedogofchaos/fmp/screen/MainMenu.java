@@ -49,7 +49,23 @@ public class MainMenu implements Screen {
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
+                Gdx.app.log("INFO", "Loading Game World");
                 game.setScreen(new GameWorld());
+            }
+        });
+        optionsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent changeEvent, Actor actor) {
+                Gdx.app.log("INFO", "Loading Options Menu");
+                // game.setScreen(new OptionsMenu());
+                // TODO: Make Options Menu
+            }
+        });
+        exitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.log("INFO", "Closing game, goodbye!");
+                Gdx.app.exit();
             }
         });
     }

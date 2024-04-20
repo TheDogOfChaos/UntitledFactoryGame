@@ -9,7 +9,7 @@ public class Player extends Actor {
     public static Actor player;
     public Texture playerSprite;
 
-    public enum PlayerState {}
+    public enum PlayerState {STANDING, MOVING, BUILDING}
     public enum PlayerMovement {NONE, NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST}
 
     public Player(Vector2 startPos) {
