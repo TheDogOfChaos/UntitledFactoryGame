@@ -2,18 +2,19 @@ package io.thedogofchaos.fmp.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Player extends Actor {
-    public static Actor player;
-    public Texture playerSprite;
+import java.util.HashMap;
 
-    public enum PlayerState {STANDING, MOVING, BUILDING}
-    public enum PlayerMovement {NONE, NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST}
+public class Player {
+    public static Texture playerSprite;
+    public static int playerX;
+    public static int playerY;
 
-    public Player(Vector2 startPos) {
+    public Player() {
         playerSprite = new Texture(Gdx.files.internal("sprites/player_placeholder.png"));
-        setBounds(startPos.x, startPos.y, 16,16);
     }
+
+
+
+
 }
