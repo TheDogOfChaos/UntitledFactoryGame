@@ -52,7 +52,7 @@ public class PlayerInputHandler implements InputProcessor {
         }
 
         // Step 3: Update velocity & state in `Player`.
-        updatePlayerState(state, newVelocity);
+
 
         return true;
     }
@@ -118,5 +118,4 @@ public class PlayerInputHandler implements InputProcessor {
     public boolean scrolled(float v, float v1) {
         return false;
     }
-}
 }
