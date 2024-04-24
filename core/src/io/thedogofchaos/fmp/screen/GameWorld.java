@@ -3,6 +3,7 @@ package io.thedogofchaos.fmp.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -20,7 +21,8 @@ public class GameWorld implements Screen {
     public GameWorld(){
         gameCamera = new OrthographicCamera();
         actorStage = new Stage();
-        player = new Player();
+        //player = new Player();
+        World world = new World(new Vector2(0, 0), true);
 
         PlayerInputHandler inputhandler = new PlayerInputHandler();
         Gdx.input.setInputProcessor(inputhandler);
@@ -37,7 +39,6 @@ public class GameWorld implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0,0,0, 1f);
         gameCamera.update();
-        PlayerInputHandler.tickPlayerMovement();
         spriteBatch.begin();
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
