@@ -13,8 +13,4 @@ public class Player {
     public Player() {
         playerSprite = new Texture(Gdx.files.internal("sprites/player_placeholder.png"));
     }
-
-
-
-
 }
