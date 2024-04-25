@@ -22,9 +22,8 @@ public enum PlayerState {
             case WALKING_NW -> new Vector2(-ONE_ON_ROOT_TWO, ONE_ON_ROOT_TWO);
             case WALKING_SE -> new Vector2(ONE_ON_ROOT_TWO, -ONE_ON_ROOT_TWO);
             case WALKING_SW -> new Vector2(-ONE_ON_ROOT_TWO, -ONE_ON_ROOT_TWO);
-            case SITTING_W -> new Vector2(0, 0);
-            case PICKUP_S, PICKUP_E, PICKUP_W, PICKUP_N -> new Vector2(0, 0);
-            case HOLD_S -> new Vector2(0, 0);
+            case SITTING_W, HOLD_S, PICKUP_S, PICKUP_E, PICKUP_W, PICKUP_N -> new Vector2(0, 0);
+            default -> throw new IllegalArgumentException();
         };
     }
 }
