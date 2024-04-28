@@ -20,7 +20,8 @@ public class GameWorld implements Screen {
     public GameWorld(){
         gameCamera = new OrthographicCamera();
         actorStage = new Stage();
-        player = new Player();
+        //player = new Player();
+
 
         PlayerInputHandler inputhandler = new PlayerInputHandler();
         Gdx.input.setInputProcessor(inputhandler);
@@ -37,7 +38,6 @@ public class GameWorld implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0,0,0, 1f);
         gameCamera.update();
-        PlayerInputHandler.tickPlayerMovement();
         spriteBatch.begin();
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {

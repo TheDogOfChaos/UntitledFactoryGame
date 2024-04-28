@@ -21,37 +21,23 @@ public class PlayerInputHandler extends InputAdapter {
     @Override
     public boolean keyDown(int i) {
         isPlayerMoving = true;
-        if (i == Input.Keys.UP) {
-            moveUp = true;
-        }
-        if (i == Input.Keys.DOWN) {
-            moveDown = true;
-        }
-        if (i == Input.Keys.LEFT) {
-            moveLeft = true;
-        }
-        if (i == Input.Keys.RIGHT) {
-            moveRight = true;
+        switch (i) {
+            case Input.Keys.UP -> moveUp = true;
+            case Input.Keys.DOWN -> moveDown = true;
+            case Input.Keys.LEFT -> moveLeft = true;
+            case Input.Keys.RIGHT -> moveRight = true;
         }
         return false;
     }
 
     @Override
     public boolean keyUp(int i) {
-        if (i==0){
-            isPlayerMoving = false;
-        }
-        if (i == Input.Keys.UP) {
-            moveUp = false;
-        }
-        if (i == Input.Keys.DOWN) {
-            moveDown = false;
-        }
-        if (i == Input.Keys.LEFT) {
-            moveLeft = false;
-        }
-        if (i == Input.Keys.RIGHT) {
-            moveRight = false;
+        isPlayerMoving = (i != 0);
+        switch (i) {
+            case Input.Keys.UP -> moveUp = false;
+            case Input.Keys.DOWN -> moveDown = false;
+            case Input.Keys.LEFT -> moveLeft = false;
+            case Input.Keys.RIGHT -> moveRight = false;
         }
         return false;
     }

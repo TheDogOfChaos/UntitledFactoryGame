@@ -15,8 +15,4 @@ public class Player {
         playerSprite = new Texture(Gdx.files.internal("sprites/player_placeholder.png"));
         // TODO: also make a proper sprite for the player
     }
-
-
-
-
 }
