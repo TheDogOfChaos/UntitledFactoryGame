@@ -27,7 +27,7 @@ public class MainMenu implements Screen {
         Gdx.input.setInputProcessor(actorStage);
 
         uiTable.setFillParent(true);
-        uiTable.setDebug(true);
+        uiTable.setDebug(false); // if i have to flip this, i probably fucked up the main menu somehow
         actorStage.addActor(uiTable);
         Gdx.app.log("INFO","Main Menu Loaded");
     }
