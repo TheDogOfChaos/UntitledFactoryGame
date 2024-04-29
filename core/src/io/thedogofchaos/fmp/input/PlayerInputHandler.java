@@ -4,14 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Intersector;
 import io.thedogofchaos.fmp.Vars;
+import io.thedogofchaos.fmp.world.Block;
 import io.thedogofchaos.fmp.world.Player;
 
 import java.util.HashMap;
 
 public class PlayerInputHandler extends InputAdapter {
     public static boolean isPlayerMoving;
-    public static int playerMoveSpeed = 2;
 
     private static boolean moveUp;
     private static boolean moveDown;
@@ -45,46 +46,30 @@ public class PlayerInputHandler extends InputAdapter {
     public static void tickPlayerMovement(){
         // NOTE: There has gotta be a better way of doing this.
         if (isPlayerMoving) {
-            float deltaX = 0;
-            float deltaY = 0;
             if (moveRight) {
-                deltaX = 1;
+                Player.playerPos.add(1,0);
             }
             if (moveLeft) {
-                deltaX = -1;
+                Player.playerPos.add(-1,0);
             }
             if (moveUp){
-                deltaY = 1;
+                Player.playerPos.add(0,1);
             }
             if (moveDown) {
-                deltaY = -1;
+                Player.playerPos.add(0,-1);
             }
-            if (moveUp&&moveRight) {
-                deltaX = 0.70710678118F;
-                deltaY = 0.70710678118F;
-            }
-            if (moveRight&&moveDown) {
-                deltaX = 0.70710678118F;
-                deltaY = -0.70710678118F;
-            }
-            if (moveDown&&moveLeft) {
-                deltaX = -0.70710678118F;
-                deltaY = -0.70710678118F;
-            }
-            if (moveLeft&&moveUp) {
-                deltaX = -0.70710678118F;
-                deltaY = 0.70710678118F;
-            }
-            Player.playerX += (deltaX*playerMoveSpeed);
-            Player.playerY += (deltaY*playerMoveSpeed);
+            checkPlayerCollision();
+            Player.playerX = (int) Player.playerPos.x;
+            Player.playerY = (int) Player.playerPos.y;
         }
     }
-    public static void checkPlayerMovementValidity() {
-        int x = Player.playerX;
-        int y = Player.playerY;
-
-        if (Vars.mapData[1][x/16][y/16] == "stoneWall"){
-            Gdx.app.log("WARN", "Player in wall at: "+x/16+", "+y/16);
+    public static void checkPlayerCollision() {
+        for (int x = 0; x < Vars.mapWidth; x++) {
+            for (int y = 0; y < Vars.mapHeight; y++) {
+                if (Intersector.overlaps(Vars.mapData[1][x][y].bounds, Player.bounds)){
+                    Player.playerPos.sub(Player.playerPos);
+                }
+            }
         }
     }
 }

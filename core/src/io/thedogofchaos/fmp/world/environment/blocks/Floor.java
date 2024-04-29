@@ -1,4 +1,11 @@
 package io.thedogofchaos.fmp.world.environment.blocks;
 
-public class Floor {
+import io.thedogofchaos.fmp.world.Block;
+
+public class Floor extends Block {
+    public Floor(String name) {
+        super(name);
+        canBePlacedOn = true;
+        canBeWalkedOn = true;
+    }
 }

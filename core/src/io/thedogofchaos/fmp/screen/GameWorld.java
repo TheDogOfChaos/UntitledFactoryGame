@@ -20,8 +20,7 @@ public class GameWorld implements Screen {
     public GameWorld(){
         gameCamera = new OrthographicCamera();
         actorStage = new Stage();
-        //player = new Player();
-
+        player = new Player();
 
         PlayerInputHandler inputhandler = new PlayerInputHandler();
         Gdx.input.setInputProcessor(inputhandler);
@@ -42,7 +41,7 @@ public class GameWorld implements Screen {
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
                 // draws floors
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[0][x][y]), x * 16, y * 16);
+                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[0][x][y])), x * 16, y * 16);
             }
         }
         for (int x = 0; x < Vars.mapWidth; x++) {
@@ -51,6 +50,7 @@ public class GameWorld implements Screen {
                 spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[1][x][y]), x * 16, y * 16);
             }
         }
+        PlayerInputHandler.tickPlayerMovement();
         spriteBatch.draw(Player.playerSprite,Player.playerX,Player.playerY);
         bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
         spriteBatch.end();

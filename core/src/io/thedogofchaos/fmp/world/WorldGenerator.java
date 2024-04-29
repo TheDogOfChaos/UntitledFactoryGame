@@ -2,14 +2,15 @@ package io.thedogofchaos.fmp.world;
 
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.utils.NoiseGenerator;
+import io.thedogofchaos.fmp.content.Blocks;
 public class WorldGenerator {
     public static void GenerateWorld(int mapWidth, int mapHeight, int noiseExponent, String noiseType) {
         Vars.mapWidth = mapWidth;
         Vars.mapHeight = mapHeight;
-        String[][][] mapArr = new String[2][mapWidth][mapHeight]; int x; int y;
+        Block[][][] mapArr = new Block[2][mapWidth][mapHeight]; int x; int y;
         x=0;y=0;
         for (int i = 0; i < (mapWidth * mapHeight); i++) {
-            mapArr[0][x][y] = "stoneFloor";
+            mapArr[0][x][y] = Blocks.stoneFloor;
             x++;
             if (x == mapWidth) {
                 y++;
@@ -33,11 +34,11 @@ public class WorldGenerator {
         }
         for (double v : noise) {
             if (Math.round(v) == 1) {
-                mapArr[1][x][y] = "stoneWall";
+                mapArr[1][x][y] = Blocks.stoneWall;
             } else if (Math.round((v*2)+0.5)==0.5) {
-                mapArr[1][x][y] = "darkStoneWall";
+                mapArr[1][x][y] = Blocks.darkStoneWall;
             } else {
-                mapArr[1][x][y] = "air";
+                mapArr[1][x][y] = Blocks.air;
             }
             x++;
             if (x == mapWidth) {
