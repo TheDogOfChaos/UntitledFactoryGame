@@ -1,5 +1,6 @@
 package io.thedogofchaos.fmp.world;
 
+import com.badlogic.gdx.math.Rectangle;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.utils.NoiseGenerator;
 import io.thedogofchaos.fmp.content.Blocks;
@@ -18,24 +19,19 @@ public class WorldGenerator {
             }
         }
         x=0;y=0;
-        double[] noise;
-        switch (noiseType) {
-            case "perlin":
-                noise = NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth, mapHeight, noiseExponent));
-                break;
-            case "smooth":
-                noise = NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, noiseExponent));
-                break;
-            case "turbulence":
-                noise = NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, noiseExponent));
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + noiseType);
-        }
+        double[] noise = switch (noiseType) {
+            case "perlin" -> NoiseGenerator.normalise(NoiseGenerator.perlinNoise(mapWidth, mapHeight, noiseExponent));
+            case "smooth" -> NoiseGenerator.normalise(NoiseGenerator.smoothNoise(mapWidth, mapHeight, noiseExponent));
+            case "turbulence" ->
+                    NoiseGenerator.normalise(NoiseGenerator.turbulence(mapWidth, mapHeight, noiseExponent));
+            default -> throw new IllegalStateException("Unexpected value: " + noiseType);
+        };
         for (double v : noise) {
             if (Math.round(v) == 1) {
+                Blocks.stoneWall.bounds = new Rectangle(x*16,y*16,16,16);
                 mapArr[1][x][y] = Blocks.stoneWall;
             } else if (Math.round((v*2)+0.5)==0.5) {
+                Blocks.stoneWall.bounds = new Rectangle(x*16,y*16,16,16);
                 mapArr[1][x][y] = Blocks.darkStoneWall;
             } else {
                 mapArr[1][x][y] = Blocks.air;
@@ -49,4 +45,3 @@ public class WorldGenerator {
         Vars.mapData = mapArr;
     }
 }
-

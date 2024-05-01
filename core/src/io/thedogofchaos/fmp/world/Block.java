@@ -8,11 +8,8 @@ import io.thedogofchaos.fmp.Vars;
 public class Block {
     public final String name;
     public Texture blockSprite;
-    public Texture blockTextureRegion;
+    public TextureRegion blockTextureRegion;
     public Rectangle bounds;
-
-    public int blockX;
-    public int blockY;
 
     public boolean canBePlacedOn = true;
     public boolean canBeBroken = false;
@@ -20,7 +17,6 @@ public class Block {
 
     public Block(String name) {
         this.name = name;
-        blockSprite = Vars.worldAtlas.findRegion(name).getTexture();
-        bounds = new Rectangle(blockX, blockY, blockSprite.getWidth(), blockSprite.getHeight());
+        blockTextureRegion = Vars.worldAtlas.findRegion(name);
     }
 }

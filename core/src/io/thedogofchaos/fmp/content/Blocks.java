@@ -1,7 +1,7 @@
 package io.thedogofchaos.fmp.content;
 
-import io.thedogofchaos.fmp.world.*;
 import io.thedogofchaos.fmp.world.environment.AirBlock;
+import io.thedogofchaos.fmp.world.Block;
 import io.thedogofchaos.fmp.world.environment.blocks.Floor;
 import io.thedogofchaos.fmp.world.environment.blocks.Wall;
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Intersector;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.world.Block;
 import io.thedogofchaos.fmp.world.Player;
+import io.thedogofchaos.fmp.world.WorldGenerator;
 
 import java.util.HashMap;
 
@@ -27,6 +28,7 @@ public class PlayerInputHandler extends InputAdapter {
             case Input.Keys.DOWN -> moveDown = true;
             case Input.Keys.LEFT -> moveLeft = true;
             case Input.Keys.RIGHT -> moveRight = true;
+            case Input.Keys.SPACE -> WorldGenerator.GenerateWorld(64,64,2,"perlin");
         }
         return false;
     }
@@ -66,8 +68,8 @@ public class PlayerInputHandler extends InputAdapter {
     public static void checkPlayerCollision() {
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
-                if (Intersector.overlaps(Vars.mapData[1][x][y].bounds, Player.bounds)){
-                    Player.playerPos.sub(Player.playerPos);
+                if (Player.bounds.overlaps(Vars.mapData[1][x][y].bounds)) {
+                    Gdx.app.log("INFO", "Collision Detected!");
                 }
             }
         }
