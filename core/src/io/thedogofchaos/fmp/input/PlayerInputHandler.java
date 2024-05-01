@@ -68,9 +68,9 @@ public class PlayerInputHandler extends InputAdapter {
     public static void checkPlayerCollision() {
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
-                if (Player.bounds.overlaps(Vars.mapData[1][x][y].bounds)) {
-                    Gdx.app.log("INFO", "Collision Detected!");
-                }
+//                if (Player.bounds.overlaps(Vars.mapData[1])) {
+//                    Gdx.app.log("INFO", "Collision Detected!");
+//                }
             }
         }
     }

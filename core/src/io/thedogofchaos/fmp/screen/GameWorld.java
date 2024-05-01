@@ -41,7 +41,7 @@ public class GameWorld implements Screen {
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
                 // draws floors
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[0][x][y].name), x * 16, y * 16);
+                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapData[0]), x * 16, y * 16);
             }
         }
         for (int x = 0; x < Vars.mapWidth; x++) {
