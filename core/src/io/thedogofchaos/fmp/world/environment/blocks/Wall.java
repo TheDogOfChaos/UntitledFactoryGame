@@ -8,6 +8,5 @@ public class Wall extends Block {
         super(name);
         canBeBroken = false;
         canBeWalkedOn = false;
-        bounds = new Rectangle();
     }
 }
