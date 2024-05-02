@@ -55,8 +55,10 @@ public class GameWorld implements Screen {
                 spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapWall[x][y].name), x * 16, y * 16);
             }
         }
-        spriteBatch.draw(Player.playerSprite,Player.playerX,Player.playerY);
+
+        spriteBatch.draw(Player.playerSprite,Player.playerBody.getPosition().x, Player.playerBody.getPosition().y);
         bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
+        bitmapFont.draw(spriteBatch, "Player XY Coords:"+Player.playerBody.getPosition().x+", "+Player.playerBody.getPosition().y, 10, 40);
         spriteBatch.end();
         world.step(1/60f, 6, 2);
     }

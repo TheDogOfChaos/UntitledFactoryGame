@@ -10,8 +10,6 @@ public class Player {
     // TODO: fucking implement collision detection for gods sake
     // TODO: also make a proper sprite for the player
     public static Texture playerSprite;
-    public static int playerX = 32;
-    public static int playerY = 32;
 
     private BodyDef playerBodyDef;
     public static Body playerBody;
@@ -21,7 +19,7 @@ public class Player {
 
         playerBodyDef = new BodyDef();
         playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-        playerBodyDef.position.set(32, 32);
+        playerBodyDef.position.set(32,32);
 
         playerBody = world.createBody(playerBodyDef);
 
