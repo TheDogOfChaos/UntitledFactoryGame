@@ -12,6 +12,7 @@ import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.input.PlayerInputHandler;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
+import io.thedogofchaos.fmp.world.WorldTicker;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;
 
@@ -57,10 +58,15 @@ public class GameWorld implements Screen {
         }
 
         spriteBatch.draw(Player.playerSprite,Player.playerBody.getPosition().x, Player.playerBody.getPosition().y);
-        bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
-        bitmapFont.draw(spriteBatch, "Player XY Coords:"+Player.playerBody.getPosition().x+", "+Player.playerBody.getPosition().y, 10, 40);
+        bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, Gdx.graphics.getHeight()-10);
+        if (Vars.debugMode) {
+            bitmapFont.draw(spriteBatch, "Player XY Co-ords:" + (int) Player.playerBody.getPosition().x + ", " + (int) Player.playerBody.getPosition().y, 10, 20);
+            bitmapFont.draw(spriteBatch, "Player XY Velocity:" + (int) PlayerInputHandler.velX + ", " + (int) PlayerInputHandler.velY, 10, 40);
+            bitmapFont.draw(spriteBatch, "Should Player be moving?: " + (PlayerInputHandler.isPlayerMoving ? "YES" : "NO"), 10, 60);
+            bitmapFont.draw(spriteBatch, "Current keycode: " + PlayerInputHandler.currentKeyCode, 10, 80);
+        }
         spriteBatch.end();
-        world.step(1/60f, 6, 2);
+        WorldTicker.tickWorld();
     }
 
     @Override

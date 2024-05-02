@@ -15,4 +15,5 @@ public class Vars {
     public static TextureAtlas worldAtlas = new TextureAtlas(Gdx.files.internal("sprites/atlas/tileAtlas.atlas"));
     public static Skin skin = new Skin(Gdx.files.internal("ui/metal-ui/metal-ui.json"));
 
+  public static boolean debugMode = true;
 }

@@ -10,6 +10,8 @@ public class Player {
     // TODO: fucking implement collision detection for gods sake
     // TODO: also make a proper sprite for the player
     public static Texture playerSprite;
+    public static int movementSpeed;
+    public static int movementSpeedMultiplier;
 
     private BodyDef playerBodyDef;
     public static Body playerBody;
@@ -29,7 +31,7 @@ public class Player {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = playerShape;
         fixtureDef.density = 0.5f;
-        fixtureDef.friction = 0.4f;
+        fixtureDef.friction = 0.75f;
         fixtureDef.restitution = 0f;
 
         Fixture fixture = playerBody.createFixture(fixtureDef);
