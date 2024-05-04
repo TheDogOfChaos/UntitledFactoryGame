@@ -14,7 +14,8 @@ public class Block {
     public final String name;
     public Texture blockSprite;
     public TextureRegion blockTextureRegion;
-    public BodyDef blockBodyDef;
+    public static BodyDef blockBodyDef;
+    public static Body blockBody;
 
     public boolean canBePlacedOn = true;
     public boolean canBeBroken = false;
@@ -24,10 +25,11 @@ public class Block {
         this.name = name;
         blockTextureRegion = Vars.worldAtlas.findRegion(name);
     }
-    public void newBlock(float posX, float posY, float width, float height){
+    public static void newBlock(float posX, float posY, float width, float height){
         blockBodyDef = new BodyDef();
-        blockBodyDef.position.set(new Vector2(posX, posY));
-        Body blockBody = world.createBody(blockBodyDef);
+        blockBodyDef.position.set(new Vector2(posX*16, posY*16));
+
+        blockBody = world.createBody(blockBodyDef);
         PolygonShape blockBox = new PolygonShape();
         blockBox.setAsBox(width, height);
         blockBody.createFixture(blockBox, 0.0f);

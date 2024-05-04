@@ -2,7 +2,10 @@ package io.thedogofchaos.fmp.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import io.thedogofchaos.fmp.Vars;
+import io.thedogofchaos.fmp.content.Blocks;
 
 import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
@@ -10,8 +13,8 @@ public class Player {
     // TODO: fucking implement collision detection for gods sake
     // TODO: also make a proper sprite for the player
     public static Texture playerSprite;
-    public static int movementSpeed;
-    public static int movementSpeedMultiplier;
+    public static int movementSpeed = 25;
+    public static int movementSpeedMultiplier = 2;
 
     private BodyDef playerBodyDef;
     public static Body playerBody;
@@ -21,7 +24,7 @@ public class Player {
 
         playerBodyDef = new BodyDef();
         playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-        playerBodyDef.position.set(32,32);
+        playerBodyDef.position.set((float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
 
         playerBody = world.createBody(playerBodyDef);
 
@@ -37,4 +40,5 @@ public class Player {
         Fixture fixture = playerBody.createFixture(fixtureDef);
         playerShape.dispose();
     }
+
 }
