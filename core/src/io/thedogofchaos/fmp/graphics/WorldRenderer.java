@@ -2,17 +2,12 @@ package io.thedogofchaos.fmp.graphics;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.thedogofchaos.fmp.UntitledFactoryGame;
 import io.thedogofchaos.fmp.Vars;
-import io.thedogofchaos.fmp.content.Blocks;
-import io.thedogofchaos.fmp.input.InputHandler;
+import io.thedogofchaos.fmp.input.GameInputs;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldTicker;
-import io.thedogofchaos.fmp.screen.GameWorld;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;
 import static io.thedogofchaos.fmp.UntitledFactoryGame.spriteBatch;
@@ -42,9 +37,9 @@ public class WorldRenderer implements Disposable {
         if (Vars.debugMode) {
             bitmapFont.draw(spriteBatch, "Player Ingame XY Co-ords:" + (int) Player.playerBody.getPosition().x/16 + ", " + (int) Player.playerBody.getPosition().y/16, 10, 20);
             bitmapFont.draw(spriteBatch, "Player Actual XY Co-ords:" + (int) Player.playerBody.getPosition().x + ", " + (int) Player.playerBody.getPosition().y, 10, 40);
-            bitmapFont.draw(spriteBatch, "Player XY Velocity:" + (int) InputHandler.velX*Player.movementSpeedMultiplier + ", " + (int) InputHandler.velY*Player.movementSpeedMultiplier, 10, 60);
-            bitmapFont.draw(spriteBatch, "Should Player be moving?: " + (InputHandler.isPlayerMoving ? "YES" : "NO"), 10, 80);
-            bitmapFont.draw(spriteBatch, "Current keycode: " + InputHandler.currentKeys, 10, 100);
+            bitmapFont.draw(spriteBatch, "Player XY Velocity:" + (int) GameInputs.velX*Player.movementSpeedMultiplier + ", " + (int) GameInputs.velY*Player.movementSpeedMultiplier, 10, 60);
+            bitmapFont.draw(spriteBatch, "Should Player be moving?: " + (GameInputs.isPlayerMoving ? "YES" : "NO"), 10, 80);
+            bitmapFont.draw(spriteBatch, "Current keycode: " + GameInputs.currentKeys, 10, 100);
         }
         spriteBatch.end();
         //GameWorld.physicsRenderer.render(GameWorld.world, gameCamera.combined);

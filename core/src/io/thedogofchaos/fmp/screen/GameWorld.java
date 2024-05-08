@@ -7,13 +7,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ScreenUtils;
-import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.graphics.LightingHandler;
-import io.thedogofchaos.fmp.input.InputHandler;
+import io.thedogofchaos.fmp.input.GameInputs;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
-import io.thedogofchaos.fmp.world.WorldTicker;
 import io.thedogofchaos.fmp.graphics.WorldRenderer;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;
@@ -33,7 +30,7 @@ public class GameWorld implements Screen {
         physicsRenderer = new Box2DDebugRenderer();
         LightingHandler.initLighting();
 
-        InputHandler inputhandler = new InputHandler();
+        GameInputs inputhandler = new GameInputs();
         Gdx.input.setInputProcessor(inputhandler);
         Gdx.app.log("INFO","Game World Loaded");
     }

@@ -6,11 +6,10 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.world.Player;
-import io.thedogofchaos.fmp.world.WorldGenerator;
 
 import java.util.ArrayList;
 
-public class InputHandler extends InputAdapter {
+public class GameInputs extends InputAdapter {
     public static float velX = 0;
     public static float velY = 0;
     public static boolean isPlayerMoving;
