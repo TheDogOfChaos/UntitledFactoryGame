@@ -1,5 +1,6 @@
 package io.thedogofchaos.fmp;
 
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,6 +18,7 @@ public class UntitledFactoryGame extends Game {
 	public static Stage actorStage;
 	public static Table uiTable;
 	public static Player player;
+	public static RayHandler rayHandler;
 
 	public UntitledFactoryGame() {
 		System.out.println("[INFO] Game Loading...");

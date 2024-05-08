@@ -1,7 +1,9 @@
 package io.thedogofchaos.fmp.input;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.math.Vector2;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
@@ -28,7 +30,9 @@ public class InputHandler extends InputAdapter {
         if (i == Input.Keys.RIGHT) {
             velX += Player.movementSpeed;
         }
-
+        if (i == Input.Keys.R) {
+            Player.playerBody.setTransform(new Vector2((float) (Math.random()*Gdx.graphics.getWidth()), (float) (Math.random()* Gdx.graphics.getHeight())), Player.playerBody.getAngle());
+        }
         if (i==Input.Keys.F3){
             Vars.debugMode = !Vars.debugMode;
         }

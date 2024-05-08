@@ -9,25 +9,28 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.thedogofchaos.fmp.Vars;
+import io.thedogofchaos.fmp.graphics.LightingHandler;
 import io.thedogofchaos.fmp.input.InputHandler;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
 import io.thedogofchaos.fmp.world.WorldTicker;
+import io.thedogofchaos.fmp.graphics.WorldRenderer;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;
 
 public class GameWorld implements Screen {
 
     public static World world;
-    Box2DDebugRenderer debugRenderer;
+    public static Box2DDebugRenderer physicsRenderer;
 
     public GameWorld(){
-        gameCamera = new OrthographicCamera();
+        gameCamera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         actorStage = new Stage();
         world = new World(new Vector2(0, 0), true);
         WorldGenerator.GenerateWorld(64,64,3,"perlin", false);
         player = new Player();
-        debugRenderer = new Box2DDebugRenderer();
+        physicsRenderer = new Box2DDebugRenderer();
+        LightingHandler.initLighting();
 
         InputHandler inputhandler = new InputHandler();
         Gdx.input.setInputProcessor(inputhandler);
@@ -41,33 +44,7 @@ public class GameWorld implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0,0,0, 1f);
-        debugRenderer.render(world, gameCamera.combined);
-        spriteBatch.begin();
-        for (int x = 0; x < Vars.mapWidth; x++) {
-            for (int y = 0; y < Vars.mapHeight; y++) {
-                // draws floors
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapFloor[x][y].name), x * 16, y * 16);
-            }
-        }
-        for (int x = 0; x < Vars.mapWidth; x++) {
-            for (int y = 0; y < Vars.mapHeight; y++) {
-                // draws walls
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapWall[x][y].name), x * 16, y * 16);
-            }
-        }
-
-        spriteBatch.draw(Player.playerSprite,Player.playerBody.getPosition().x, Player.playerBody.getPosition().y);
-        bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, Gdx.graphics.getHeight()-10);
-        if (Vars.debugMode) {
-            bitmapFont.draw(spriteBatch, "Player Ingame XY Co-ords:" + (int) Player.playerBody.getPosition().x/16 + ", " + (int) Player.playerBody.getPosition().y/16, 10, 20);
-            bitmapFont.draw(spriteBatch, "Player Actual XY Co-ords:" + (int) Player.playerBody.getPosition().x + ", " + (int) Player.playerBody.getPosition().y, 10, 40);
-            bitmapFont.draw(spriteBatch, "Player XY Velocity:" + (int) InputHandler.velX*Player.movementSpeedMultiplier + ", " + (int) InputHandler.velY*Player.movementSpeedMultiplier, 10, 60);
-            bitmapFont.draw(spriteBatch, "Should Player be moving?: " + (InputHandler.isPlayerMoving ? "YES" : "NO"), 10, 80);
-            bitmapFont.draw(spriteBatch, "Current keycode: " + InputHandler.currentKeys, 10, 100);
-        }
-        spriteBatch.end();
-        WorldTicker.tickWorld();
+        WorldRenderer.RenderWorld();
     }
 
     @Override
@@ -92,6 +69,5 @@ public class GameWorld implements Screen {
 
     @Override
     public void dispose() {
-
     }
 }

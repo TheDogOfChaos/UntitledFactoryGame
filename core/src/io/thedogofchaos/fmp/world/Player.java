@@ -24,6 +24,7 @@ public class Player {
 
         playerBodyDef = new BodyDef();
         playerBodyDef.type = BodyDef.BodyType.DynamicBody;
+        playerBodyDef.fixedRotation = true;
         playerBodyDef.position.set((float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
 
         playerBody = world.createBody(playerBodyDef);

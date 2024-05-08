@@ -27,9 +27,11 @@ public class Block {
     }
     public static void newBlock(float posX, float posY, float width, float height){
         blockBodyDef = new BodyDef();
+        blockBodyDef.type = BodyDef.BodyType.StaticBody;
         blockBodyDef.position.set(new Vector2(posX*16, posY*16));
 
         blockBody = world.createBody(blockBodyDef);
+
         PolygonShape blockBox = new PolygonShape();
         blockBox.setAsBox(width, height);
         blockBody.createFixture(blockBox, 0.0f);
