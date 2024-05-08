@@ -25,9 +25,10 @@ public class GameWorld implements Screen {
 
     public GameWorld(){
         gameCamera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        gameCamera.position.set(gameCamera.viewportWidth / 2f, gameCamera.viewportHeight / 2f, 0);
         actorStage = new Stage();
         world = new World(new Vector2(0, 0), true);
-        WorldGenerator.GenerateWorld(64,64,3,"perlin", false);
+        WorldGenerator.GenerateWorld(128,128,2,"perlin", false);
         player = new Player();
         physicsRenderer = new Box2DDebugRenderer();
         LightingHandler.initLighting();

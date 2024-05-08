@@ -37,7 +37,6 @@ public class InputHandler extends InputAdapter {
             Vars.debugMode = !Vars.debugMode;
         }
         currentKeys.add(i);
-        isPlayerMoving = !currentKeys.isEmpty();
         return true;
     }
 
@@ -57,7 +56,6 @@ public class InputHandler extends InputAdapter {
         }
 
         currentKeys.remove(Integer.valueOf(i));
-        isPlayerMoving = !currentKeys.isEmpty();
         return true;
     }
 }

@@ -25,12 +25,12 @@ public class Player {
         playerBodyDef = new BodyDef();
         playerBodyDef.type = BodyDef.BodyType.DynamicBody;
         playerBodyDef.fixedRotation = true;
-        playerBodyDef.position.set((float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
+        playerBodyDef.position.set(64*16,64*16); //initial player position
 
         playerBody = world.createBody(playerBodyDef);
 
         PolygonShape playerShape = new PolygonShape();
-        playerShape.setAsBox(16,16);
+        playerShape.setAsBox(8,8);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = playerShape;
