@@ -17,16 +17,16 @@ public class GameInputs extends InputAdapter {
 
     @Override
     public boolean keyDown(int i) {
-        if (i == Input.Keys.UP) {
+        if (i == Input.Keys.W) {
             velY += Player.movementSpeed;
         }
-        if (i == Input.Keys.DOWN) {
+        if (i == Input.Keys.S) {
             velY -= Player.movementSpeed;
         }
-        if (i == Input.Keys.LEFT) {
+        if (i == Input.Keys.A) {
             velX -= Player.movementSpeed;
         }
-        if (i == Input.Keys.RIGHT) {
+        if (i == Input.Keys.D) {
             velX += Player.movementSpeed;
         }
         if (i==Input.Keys.Q){
