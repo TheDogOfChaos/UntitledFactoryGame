@@ -18,7 +18,7 @@ public class Blocks {
     public static Block darkStoneWall = new Wall("darkStoneWall");
     public static Block air = new AirBlock("air");
     public Block sandStoneWall = new Wall("sandStoneWall");
-    public Block iceWall = new Wall("iceWall");
+    public static Block iceWall = new Wall("iceWall");
     public Block saltWall = new Wall("saltWall");
 
     public static Block stoneFloor = new Floor("stoneFloor");

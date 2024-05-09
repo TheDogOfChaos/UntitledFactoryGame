@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.input.GameInputs;
+import io.thedogofchaos.fmp.screen.GameWorld;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldTicker;
 
@@ -19,16 +20,17 @@ public class WorldRenderer implements Disposable {
         gameCamera.position.set(Player.playerBody.getPosition().x-8, Player.playerBody.getPosition().y-8, 0);
         gameCamera.update();
         spriteBatch.begin();
+
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
                 // draws floors
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapFloor[x][y].name), (x * 16)+(Gdx.graphics.getWidth()/2f)-Player.playerBody.getPosition().x, (y * 16)+(Gdx.graphics.getWidth()/2f)-Player.playerBody.getPosition().y-80);
+                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapFloor[x][y].name), (x * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().x, (y * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().y - 80);
             }
         }
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
                 // draws walls
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapWall[x][y].name), (x * 16)+(Gdx.graphics.getWidth()/2f)-Player.playerBody.getPosition().x, (y * 16)+(Gdx.graphics.getWidth()/2f)-Player.playerBody.getPosition().y-80);
+                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapWall[x][y].name), (x * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().x, (y * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().y - 80);
             }
         }
 
@@ -42,7 +44,7 @@ public class WorldRenderer implements Disposable {
             bitmapFont.draw(spriteBatch, "Current keycode: " + GameInputs.currentKeys, 10, 100);
         }
         spriteBatch.end();
-        //GameWorld.physicsRenderer.render(GameWorld.world, gameCamera.combined);
+        GameWorld.physicsRenderer.render(GameWorld.world, gameCamera.combined);
         WorldTicker.tickWorld();
     }
 
