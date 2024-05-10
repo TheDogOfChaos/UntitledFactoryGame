@@ -6,45 +6,43 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.thedogofchaos.fmp.UntitledFactoryGame;
+import io.thedogofchaos.fmp.*;
 import io.thedogofchaos.fmp.Vars;
-
-import static io.thedogofchaos.fmp.UntitledFactoryGame.actorStage;
-import static io.thedogofchaos.fmp.UntitledFactoryGame.uiTable;
 
 public class MainMenu implements Screen {
     private final UntitledFactoryGame game;
+    private final Stage mainMenuStage;
+    private final Table mainMenuTable;
 
     public MainMenu(UntitledFactoryGame UFGame) {
         this.game = UFGame;
-        actorStage = new Stage();
-        uiTable = new Table();
-        Gdx.input.setInputProcessor(actorStage);
+        mainMenuStage = new Stage();
+        mainMenuTable = new Table();
+        Gdx.input.setInputProcessor(mainMenuStage);
 
-        uiTable.setFillParent(true);
-        uiTable.setDebug(false); // if i have to flip this, i probably fucked up the main menu somehow
-        actorStage.addActor(uiTable);
+        mainMenuTable.setFillParent(true);
+        mainMenuTable.setDebug(Vars.ultimateDebugMode || Vars.stageDebugMode);
+        mainMenuStage.addActor(mainMenuTable);
         Gdx.app.log("INFO","Main Menu Loaded");
     }
 
     @Override
     public void show() {
         Image title = new Image(new Texture(Gdx.files.internal("sprites/UFG_Logo.png")));
-        uiTable.add(title);
-        uiTable.row();
+        mainMenuTable.add(title);
+        mainMenuTable.row();
         TextButton startButton = new TextButton("START", Vars.skin);
-        uiTable.add(startButton);
-        uiTable.row();
+        mainMenuTable.add(startButton);
+        mainMenuTable.row();
         TextButton optionsButton = new TextButton("OPTIONS", Vars.skin);
-        uiTable.add(optionsButton);
-        uiTable.row();
+        mainMenuTable.add(optionsButton);
+        mainMenuTable.row();
         TextButton exitButton = new TextButton("EXIT", Vars.skin);
-        uiTable.add(exitButton);
+        mainMenuTable.add(exitButton);
 
         startButton.addListener(new ChangeListener() {
             @Override
@@ -73,13 +71,13 @@ public class MainMenu implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(1, 1, 1, 1);
-        actorStage.act(delta);
-        actorStage.draw();
+        mainMenuStage.act(delta);
+        mainMenuStage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        actorStage.getViewport().update(width, height);
+        mainMenuStage.getViewport().update(width, height);
     }
 
     @Override
@@ -99,6 +97,6 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
-        actorStage.dispose();
+        mainMenuStage.dispose();
     }
 }

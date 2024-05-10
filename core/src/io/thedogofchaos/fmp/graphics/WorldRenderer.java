@@ -36,7 +36,7 @@ public class WorldRenderer implements Disposable {
 
         spriteBatch.draw(Player.playerSprite, (float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
         bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, Gdx.graphics.getHeight()-10);
-        if (Vars.debugMode) {
+        if (Vars.ultimateDebugMode || Vars.ingameDebugInfo) {
             bitmapFont.draw(spriteBatch, "Player Ingame XY Co-ords:" + (int) Player.playerBody.getPosition().x/16 + ", " + (int) Player.playerBody.getPosition().y/16, 10, 20);
             bitmapFont.draw(spriteBatch, "Player Actual XY Co-ords:" + (int) Player.playerBody.getPosition().x + ", " + (int) Player.playerBody.getPosition().y, 10, 40);
             bitmapFont.draw(spriteBatch, "Player XY Velocity:" + (int) GameInputs.velX*Player.movementSpeedMultiplier + ", " + (int) GameInputs.velY*Player.movementSpeedMultiplier, 10, 60);

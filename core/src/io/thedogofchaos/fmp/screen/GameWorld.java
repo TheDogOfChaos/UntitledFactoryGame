@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import io.thedogofchaos.fmp.graphics.LightingHandler;
+import io.thedogofchaos.fmp.fragment.BuildMenuFragment;
 import io.thedogofchaos.fmp.input.GameInputs;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
@@ -19,20 +19,31 @@ public class GameWorld implements Screen {
 
     public static World world;
     public static Box2DDebugRenderer physicsRenderer;
+    public static Stage worldStage;
+    private final BuildMenuFragment buildMenuFragment;
 
     public GameWorld(){
         gameCamera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         gameCamera.position.set(gameCamera.viewportWidth / 2f, gameCamera.viewportHeight / 2f, 0);
-        actorStage = new Stage();
+
+        worldStage = new Stage();
+        buildMenuFragment = new BuildMenuFragment();
+        worldStage.addActor(BuildMenuFragment.buildMenuTable);
+
         world = new World(new Vector2(0, 0), true);
         WorldGenerator.GenerateWorld(128,128,2,"perlin");
-        player = new Player();
-        physicsRenderer = new Box2DDebugRenderer();
-        LightingHandler.initLighting();
 
-        GameInputs inputhandler = new GameInputs();
-        Gdx.input.setInputProcessor(inputhandler);
+        player = new Player();
+
+        physicsRenderer = new Box2DDebugRenderer();
+
+        //LightingHandler.initLighting();
+
+        GameInputs inputHandler = new GameInputs();
+        Gdx.input.setInputProcessor(inputHandler);
+
         Gdx.app.log("INFO","Game World Loaded");
+
     }
     
     @Override
@@ -67,5 +78,7 @@ public class GameWorld implements Screen {
 
     @Override
     public void dispose() {
+        worldStage.dispose();
+        world.dispose();
     }
 }
