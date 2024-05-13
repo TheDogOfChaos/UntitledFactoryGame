@@ -12,7 +12,6 @@ import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Block {
     public final String name;
-    public Texture blockSprite;
     public TextureRegion blockTextureRegion;
     public static BodyDef blockBodyDef;
     public static Body blockBody;

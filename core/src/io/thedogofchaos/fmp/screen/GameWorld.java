@@ -9,9 +9,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.thedogofchaos.fmp.fragment.BuildMenuFragment;
 import io.thedogofchaos.fmp.input.GameInputs;
+import io.thedogofchaos.fmp.world.Block;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
 import io.thedogofchaos.fmp.graphics.WorldRenderer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;
 
@@ -21,6 +25,7 @@ public class GameWorld implements Screen {
     public static Box2DDebugRenderer physicsRenderer;
     public static Stage worldStage;
     private final BuildMenuFragment buildMenuFragment;
+    public static HashMap<Block, String> builtBuildings = new HashMap<Block, String>();
 
     public GameWorld(){
         gameCamera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
@@ -48,7 +53,7 @@ public class GameWorld implements Screen {
     
     @Override
     public void show() {
-
+        BuildMenuFragment.show();
     }
 
     @Override
@@ -57,24 +62,16 @@ public class GameWorld implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() {}
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {

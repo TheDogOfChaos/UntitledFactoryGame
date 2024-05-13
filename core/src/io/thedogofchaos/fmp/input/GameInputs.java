@@ -16,18 +16,19 @@ public class GameInputs extends InputAdapter {
 
     @Override
     public boolean keyDown(int i) {
-        if (i == Input.Keys.W) {
+        if ((i == Input.Keys.W)||(i == Input.Keys.UP)) {
             velY += Player.movementSpeed;
         }
-        if (i == Input.Keys.S) {
+        if ((i == Input.Keys.S)||(i == Input.Keys.DOWN)) {
             velY -= Player.movementSpeed;
         }
-        if (i == Input.Keys.A) {
+        if ((i == Input.Keys.A)||(i == Input.Keys.LEFT)) {
             velX -= Player.movementSpeed;
         }
-        if (i == Input.Keys.D) {
+        if ((i == Input.Keys.D)||(i == Input.Keys.RIGHT)) {
             velX += Player.movementSpeed;
         }
+
         if (i==Input.Keys.Q){
             // this will cycle the build menu left
         }
@@ -46,16 +47,16 @@ public class GameInputs extends InputAdapter {
 
     @Override
     public boolean keyUp(int i) {
-        if (i == Input.Keys.UP) {
+        if ((i == Input.Keys.W)||(i == Input.Keys.UP)) {
             velY -= Player.movementSpeed;
         }
-        if (i == Input.Keys.DOWN) {
+        if ((i == Input.Keys.S)||(i == Input.Keys.DOWN)) {
             velY += Player.movementSpeed;
         }
-        if (i == Input.Keys.LEFT) {
+        if ((i == Input.Keys.A)||(i == Input.Keys.LEFT)) {
             velX += Player.movementSpeed;
         }
-        if (i == Input.Keys.RIGHT) {
+        if ((i == Input.Keys.D)||(i == Input.Keys.RIGHT)) {
             velX -= Player.movementSpeed;
         }
         currentKeys.remove(Integer.valueOf(i));

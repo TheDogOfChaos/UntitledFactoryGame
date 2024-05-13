@@ -20,7 +20,6 @@ public class WorldRenderer implements Disposable {
         gameCamera.position.set(Player.playerBody.getPosition().x-8, Player.playerBody.getPosition().y-8, 0);
         gameCamera.update();
         spriteBatch.begin();
-
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
                 // draws floors
@@ -37,8 +36,8 @@ public class WorldRenderer implements Disposable {
         spriteBatch.draw(Player.playerSprite, (float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
         bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, Gdx.graphics.getHeight()-10);
         if (Vars.ultimateDebugMode || Vars.ingameDebugInfo) {
-            bitmapFont.draw(spriteBatch, "Player Ingame XY Co-ords:" + (int) Player.playerBody.getPosition().x/16 + ", " + (int) Player.playerBody.getPosition().y/16, 10, 20);
-            bitmapFont.draw(spriteBatch, "Player Actual XY Co-ords:" + (int) Player.playerBody.getPosition().x + ", " + (int) Player.playerBody.getPosition().y, 10, 40);
+            bitmapFont.draw(spriteBatch, "Player in-game XY Co-ords:" + (int) Player.playerBody.getPosition().x/16 + ", " + (int) Player.playerBody.getPosition().y/16, 10, 20);
+            bitmapFont.draw(spriteBatch, "Player actual XY Co-ords:" + (int) Player.playerBody.getPosition().x + ", " + (int) Player.playerBody.getPosition().y, 10, 40);
             bitmapFont.draw(spriteBatch, "Player XY Velocity:" + (int) GameInputs.velX*Player.movementSpeedMultiplier + ", " + (int) GameInputs.velY*Player.movementSpeedMultiplier, 10, 60);
             bitmapFont.draw(spriteBatch, "Should Player be moving?: " + (GameInputs.isPlayerMoving ? "YES" : "NO"), 10, 80);
             bitmapFont.draw(spriteBatch, "Current keycode: " + GameInputs.currentKeys, 10, 100);
@@ -46,6 +45,8 @@ public class WorldRenderer implements Disposable {
         spriteBatch.end();
         GameWorld.physicsRenderer.render(GameWorld.world, gameCamera.combined);
         WorldTicker.tickWorld();
+        GameWorld.worldStage.act(Gdx.graphics.getDeltaTime());
+        GameWorld.worldStage.draw();
     }
 
     @Override
