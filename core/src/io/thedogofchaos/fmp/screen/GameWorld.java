@@ -1,6 +1,7 @@
 package io.thedogofchaos.fmp.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -28,8 +29,10 @@ public class GameWorld implements Screen {
     public static HashMap<Block, String> builtBuildings = new HashMap<Block, String>();
 
     public GameWorld(){
-        gameCamera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        gameCamera.position.set(gameCamera.viewportWidth / 2f, gameCamera.viewportHeight / 2f, 0);
+        { // Purpose: This sets up the camera to the width and height of the window, and its position to half of the width and height.
+            gameCamera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            gameCamera.position.set(gameCamera.viewportWidth / 2f, gameCamera.viewportHeight / 2f, 0);
+        }
 
         worldStage = new Stage();
         buildMenuFragment = new BuildMenuFragment();
@@ -44,8 +47,13 @@ public class GameWorld implements Screen {
 
         //LightingHandler.initLighting();
 
-        GameInputs inputHandler = new GameInputs();
-        Gdx.input.setInputProcessor(inputHandler);
+        { // Purpose: This sets inputs when the world is being loaded
+            InputMultiplexer multiplexer = new InputMultiplexer();
+            GameInputs inputHandler = new GameInputs();
+            multiplexer.addProcessor(inputHandler);
+            multiplexer.addProcessor(worldStage);
+            Gdx.input.setInputProcessor(multiplexer);
+        }
 
         Gdx.app.log("INFO","Game World Loaded");
 

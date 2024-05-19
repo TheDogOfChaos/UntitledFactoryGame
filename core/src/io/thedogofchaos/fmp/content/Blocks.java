@@ -23,5 +23,6 @@ public class Blocks {
 
     public static Block stoneFloor = new Floor("stoneFloor");
 
-    public static Block[] blockList = {air, stoneWall, darkStoneWall, sandStoneWall, iceWall, saltWall};
+    public static Block[] playerBlockList = {};
+    public static Block[] naturalBlockList = {air, stoneWall, darkStoneWall, sandStoneWall, iceWall, saltWall};
 }
