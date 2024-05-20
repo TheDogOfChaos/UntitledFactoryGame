@@ -29,7 +29,7 @@ public class WorldGenerator {
             for (double v : noise) {
                 if (Math.round(v) == 1) {
                     mapWall[x][y] = Blocks.darkStoneWall;
-                    Block.newBlock(x, y, 8f, 8f);
+                    Block.placeBlock(x, y, 8f, 8f);
                 } else {
                     mapWall[x][y] = Blocks.air;
                 }
