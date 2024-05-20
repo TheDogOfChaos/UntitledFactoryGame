@@ -7,4 +7,5 @@ eclipse.project.name = appName + "-core"
 
 dependencies {
     implementation "space.earlygrey:shapedrawer:$shapedrawerVersion"
+    implementation "dev.dewy:nbt:1.5.1"
 }

@@ -4,7 +4,7 @@ import io.thedogofchaos.fmp.world.Block;
 
 public class Floor extends Block {
     public Floor(String name) {
-        super(name);
+        super(name,1,1);
         canBePlacedOn = true;
         canBeWalkedOn = true;
     }
