@@ -1,6 +1,6 @@
-package io.thedogofchaos.fmp.world.environment.blocks;
+package io.thedogofchaos.fmp.world.blocks.environment;
 
-import io.thedogofchaos.fmp.world.Block;
+import io.thedogofchaos.fmp.world.blocks.Block;
 
 public class Floor extends Block {
     public Floor(String name) {

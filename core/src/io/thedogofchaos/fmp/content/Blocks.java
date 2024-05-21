@@ -1,9 +1,9 @@
 package io.thedogofchaos.fmp.content;
 
-import io.thedogofchaos.fmp.world.*;
-import io.thedogofchaos.fmp.world.environment.AirBlock;
-import io.thedogofchaos.fmp.world.environment.blocks.Floor;
-import io.thedogofchaos.fmp.world.environment.blocks.Wall;
+import io.thedogofchaos.fmp.world.blocks.*;
+import io.thedogofchaos.fmp.world.blocks.environment.Floor;
+import io.thedogofchaos.fmp.world.blocks.environment.Wall;
+import io.thedogofchaos.fmp.world.blocks.playermade.*;
 
 public class Blocks {
 //    // environment

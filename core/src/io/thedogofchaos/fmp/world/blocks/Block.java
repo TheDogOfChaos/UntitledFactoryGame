@@ -1,4 +1,4 @@
-package io.thedogofchaos.fmp.world;
+package io.thedogofchaos.fmp.world.blocks;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -20,6 +20,7 @@ public class Block {
     public boolean canBePlacedOn = true;
     public boolean canBeBroken = false;
     public boolean canBeWalkedOn = true;
+    public boolean isDynamic = false;
 
     public Block(String name, int blockWidth, int blockHeight) {
         this.name = name;

@@ -3,6 +3,7 @@ package io.thedogofchaos.fmp.world;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.utils.NoiseGenerator;
 import io.thedogofchaos.fmp.content.Blocks;
+import io.thedogofchaos.fmp.world.blocks.*;
 
 import static io.thedogofchaos.fmp.Vars.mapFloor;
 import static io.thedogofchaos.fmp.Vars.mapWall;

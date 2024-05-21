@@ -1,7 +1,6 @@
-package io.thedogofchaos.fmp.world.environment.blocks;
+package io.thedogofchaos.fmp.world.blocks.environment;
 
-import com.badlogic.gdx.math.Rectangle;
-import io.thedogofchaos.fmp.world.Block;
+import io.thedogofchaos.fmp.world.blocks.Block;
 
 public class Wall extends Block {
     public Wall(String name, int blockWidth, int blockHeight){
@@ -9,5 +8,4 @@ public class Wall extends Block {
         canBeBroken = false;
         canBeWalkedOn = false;
     }
-
 }

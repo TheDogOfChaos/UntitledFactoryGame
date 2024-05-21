@@ -10,12 +10,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.thedogofchaos.fmp.fragment.BuildMenuFragment;
 import io.thedogofchaos.fmp.input.GameInputs;
-import io.thedogofchaos.fmp.world.Block;
+import io.thedogofchaos.fmp.world.blocks.Block;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldGenerator;
 import io.thedogofchaos.fmp.graphics.WorldRenderer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;

@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.content.Blocks;
-import io.thedogofchaos.fmp.world.Block;
+import io.thedogofchaos.fmp.world.blocks.Block;
 
 public class BuildMenuFragment implements Disposable {
 
