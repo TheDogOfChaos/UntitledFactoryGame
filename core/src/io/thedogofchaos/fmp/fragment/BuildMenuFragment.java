@@ -24,20 +24,26 @@ public class BuildMenuFragment implements Disposable {
     public static void show() {
         for (Block block: Blocks.naturalBlockList) {
             // Note: This probably isn't the best way of doing this but i have to get this done within the next 2 weeks, so too bad!
+            // update: i don't have enough time
             int index = java.util.Arrays.asList(Blocks.naturalBlockList).indexOf(block);
 
-            ImageButton blockButton = new ImageButton(new TextureRegionDrawable(Blocks.naturalBlockList[index].blockTextureRegion));
-            blockButton.setTransform(true);
-            blockButton.setOrigin(blockButton.getPrefWidth() / 2, blockButton.getPrefHeight() / 2);
-            blockButton.setScale(1f,1f);
-            blockButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    Gdx.app.log("INFO", "block: "+block.name);
-                }
-            });
+            ImageButton blockButton = getImageButton(block, index);
             buildMenuTable.add(blockButton);
         }
+    }
+
+    private static ImageButton getImageButton(Block block, int index) {
+        ImageButton blockButton = new ImageButton(new TextureRegionDrawable(Blocks.naturalBlockList[index].blockTextureRegion));
+        blockButton.setTransform(true);
+        blockButton.setOrigin(blockButton.getPrefWidth() / 2, blockButton.getPrefHeight() / 2);
+        blockButton.setScale(1f,1f);
+        blockButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.log("INFO", "block: "+ block.name);
+            }
+        });
+        return blockButton;
     }
 
     @Override

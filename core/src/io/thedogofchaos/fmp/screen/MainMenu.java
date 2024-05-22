@@ -6,12 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.thedogofchaos.fmp.*;
 import io.thedogofchaos.fmp.Vars;
+import org.w3c.dom.Text;
 
 public class MainMenu implements Screen {
     private final UntitledFactoryGame game;
@@ -43,7 +45,28 @@ public class MainMenu implements Screen {
         mainMenuTable.row();
         TextButton exitButton = new TextButton("EXIT", Vars.skin);
         mainMenuTable.add(exitButton);
-
+        mainMenuTable.row();
+        Label license1 = new Label("Copyright (C) 2024 TheDogOfChaos\n"+
+                "This work is licensed under the GNU GPLv3.\n"+
+                "This program is free software: you can redistribute it and/or modify\n" +
+                "it under the terms of the GNU General Public License as published by\n" +
+                "the Free Software Foundation, either version 3 of the License, or\n" +
+                "(at your option) any later version.\n" +
+                "\n" +
+                "This program is distributed in the hope that it will be useful,\n" +
+                "but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
+                "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" +
+                "GNU General Public License for more details.\n" +
+                "\n" +
+                "You should have received a copy of the GNU General Public License\n" +
+                "along with this program.  If not, see <https://www.gnu.org/licenses/>.", Vars.skin);
+        mainMenuTable.add(license1);
+        mainMenuTable.row();
+        TextButton licenseLink = new TextButton("Full License text here (Click me)", Vars.skin);
+        mainMenuTable.add(licenseLink);
+        mainMenuTable.row();
+        
+        
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
@@ -64,6 +87,12 @@ public class MainMenu implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.log("INFO", "Closing game, goodbye!");
                 Gdx.app.exit();
+            }
+        });
+        licenseLink.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.net.openURI("https://github.com/TheDogOfChaos/UntitledFactoryGame/blob/main/LICENSE");
             }
         });
     }
