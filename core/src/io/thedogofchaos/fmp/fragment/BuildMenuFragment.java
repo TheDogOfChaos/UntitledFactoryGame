@@ -1,3 +1,20 @@
+/*
+	Copyright (c) 2024 TheDogOfChaos
+
+ 	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package io.thedogofchaos.fmp.fragment;
 
 import com.badlogic.gdx.Gdx;
@@ -23,8 +40,7 @@ public class BuildMenuFragment implements Disposable {
 
     public static void show() {
         for (Block block: Blocks.naturalBlockList) {
-            // Note: This probably isn't the best way of doing this but i have to get this done within the next 2 weeks, so too bad!
-            // update: i don't have enough time
+            // Note: This probably isn't the best way of doing this but i have to get this project in a playable state very soon, so too bad!
             int index = java.util.Arrays.asList(Blocks.naturalBlockList).indexOf(block);
 
             ImageButton blockButton = getImageButton(block, index);
