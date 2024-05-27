@@ -28,6 +28,7 @@ public class Vars {
     public static int mapHeight;
     public static Block[][] mapFloor;
     public static Block[][] mapWall;
+    public static Block[][] playerBuildings;
 
     public static TextureAtlas worldAtlas = new TextureAtlas(Gdx.files.internal("sprites/atlas/tileAtlas.atlas"));
     public static Skin skin = new Skin(Gdx.files.internal("ui/metal-ui/metal-ui.json"));

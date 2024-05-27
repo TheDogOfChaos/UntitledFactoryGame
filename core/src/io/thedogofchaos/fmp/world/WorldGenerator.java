@@ -18,6 +18,7 @@
 package io.thedogofchaos.fmp.world;
 
 import io.thedogofchaos.fmp.Vars;
+import io.thedogofchaos.fmp.game.*;
 import io.thedogofchaos.fmp.utils.NoiseGenerator;
 import io.thedogofchaos.fmp.content.Blocks;
 import io.thedogofchaos.fmp.world.blocks.*;
@@ -47,7 +48,7 @@ public class WorldGenerator {
             for (double v : noise) {
                 if (Math.round(v) == 1) {
                     mapWall[x][y] = Blocks.darkStoneWall;
-                    Block.placeBlock(x, y, 8f, 8f);
+                    Build.placeBlock(x, y, 8f, 8f);
                 } else {
                     mapWall[x][y] = Blocks.air;
                 }

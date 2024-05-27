@@ -17,18 +17,14 @@
 
 package io.thedogofchaos.fmp.content;
 
+import com.badlogic.gdx.utils.*;
 import io.thedogofchaos.fmp.world.blocks.*;
 import io.thedogofchaos.fmp.world.blocks.environment.Floor;
 import io.thedogofchaos.fmp.world.blocks.environment.Wall;
 import io.thedogofchaos.fmp.world.blocks.playermade.*;
 
 public class Blocks {
-//    // environment
-//    air, water,
-//    //natural walls
-//    stoneWall, darkStoneWall, sandStoneWall, iceWall, saltWall,
-//    //natural floors
-//    stoneFloor, sandStoneFloor, iceFloor, saltFloor
+    public static Array<Block> blockList;
 
     public static Block air = new AirBlock("air");
 
@@ -46,6 +42,5 @@ public class Blocks {
     public static Block vault = new PlayerBuilding("vault",3,3);
     public static Block core = new PlayerBuilding("core",4,4);
 
-    public static Block[] playerBlockList = {};
-    public static Block[] naturalBlockList = {air, stoneWall, darkStoneWall, sandStoneWall, iceWall, saltWall};
+
 }

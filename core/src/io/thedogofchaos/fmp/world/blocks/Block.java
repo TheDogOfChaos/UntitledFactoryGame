@@ -34,9 +34,10 @@ public class Block {
     public final int blockWidth;
     public final int blockHeight;
 
-    public boolean canBePlacedOn = true;
-    public boolean canBeBroken = false;
-    public boolean canBeWalkedOn = true;
+    public boolean isPlaceableOn = true;
+    public boolean isPlaceableByPlayer = false;
+    public boolean isBreakable;
+    public boolean isWalkableOn = true;
     public boolean isDynamic = false;
 
     public Block(String name, int blockWidth, int blockHeight) {
@@ -44,19 +45,5 @@ public class Block {
         this.blockWidth = blockWidth;
         this.blockHeight = blockHeight;
         blockTextureRegion = Vars.worldAtlas.findRegion(name);
-    }
-    public static void placeBlock(float posX, float posY, float width, float height){
-        blockBodyDef = new BodyDef();
-        blockBodyDef.type = BodyDef.BodyType.StaticBody;
-        blockBodyDef.position.set(new Vector2((posX*16), (posY*16)));
-
-        blockBody = world.createBody(blockBodyDef);
-
-        PolygonShape blockBox = new PolygonShape();
-        blockBox.setAsBox(width, height);
-        blockBody.createFixture(blockBox, 0.0f);
-        blockBox.dispose();
-    }
-    public static void removeBlock(){
     }
 }
