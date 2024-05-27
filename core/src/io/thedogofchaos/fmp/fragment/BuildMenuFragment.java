@@ -28,10 +28,12 @@ import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.content.Blocks;
 import io.thedogofchaos.fmp.world.blocks.Block;
 
+import java.util.*;
+
 public class BuildMenuFragment implements Disposable {
 
     public static Table buildMenuTable;
-    public BuildMenuFragment(){ // Purpose: Initialises the build menu table that is placed on the worldStage.
+    public BuildMenuFragment(){ // Purpose: Initializes the build menu table that is placed on the worldStage.
         buildMenuTable = new Table();
         buildMenuTable.setFillParent(true);
         buildMenuTable.setDebug(Vars.ultimateDebugMode || Vars.stageDebugMode);
@@ -39,28 +41,23 @@ public class BuildMenuFragment implements Disposable {
     }
 
     public static void show() {
-        for (Block block: Blocks.naturalBlockList) {
+        for (int i = 0; i < Blocks.getAllBlocks().size(); i++) {
             // Note: This probably isn't the best way of doing this but i have to get this project in a playable state very soon, so too bad!
-            int index = java.util.Arrays.asList(Blocks.naturalBlockList).indexOf(block);
 
-            ImageButton blockButton = getImageButton(block, index);
+            ImageButton blockButton = new ImageButton(new TextureRegionDrawable(Blocks.getAllBlocks().get(i).blockTextureRegion));
+            blockButton.setTransform(true);
+            blockButton.setOrigin(blockButton.getPrefWidth() / 2, blockButton.getPrefHeight() / 2);
+            blockButton.setScale(1f,1f);
+            blockButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    Gdx.app.log("HEHEHE","fuck");
+                }
+            });
             buildMenuTable.add(blockButton);
         }
     }
 
-    private static ImageButton getImageButton(Block block, int index) {
-        ImageButton blockButton = new ImageButton(new TextureRegionDrawable(Blocks.naturalBlockList[index].blockTextureRegion));
-        blockButton.setTransform(true);
-        blockButton.setOrigin(blockButton.getPrefWidth() / 2, blockButton.getPrefHeight() / 2);
-        blockButton.setScale(1f,1f);
-        blockButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.log("INFO", "block: "+ block.name);
-            }
-        });
-        return blockButton;
-    }
 
     @Override
     public void dispose() {

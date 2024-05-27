@@ -24,5 +24,6 @@ public class Wall extends Block {
         super(name, blockWidth, blockHeight);
         isBreakable = false;
         isWalkableOn = false;
+        isSolid = true;
     }
 }

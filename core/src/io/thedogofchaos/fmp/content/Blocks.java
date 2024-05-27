@@ -17,14 +17,18 @@
 
 package io.thedogofchaos.fmp.content;
 
+import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
+import com.badlogic.gdx.utils.Array;
 import io.thedogofchaos.fmp.world.blocks.*;
 import io.thedogofchaos.fmp.world.blocks.environment.Floor;
 import io.thedogofchaos.fmp.world.blocks.environment.Wall;
 import io.thedogofchaos.fmp.world.blocks.playermade.*;
 
+import java.lang.reflect.*;
+import java.util.*;
+
 public class Blocks {
-    public static Array<Block> blockList;
 
     public static Block air = new AirBlock("air");
 
@@ -42,5 +46,21 @@ public class Blocks {
     public static Block vault = new PlayerBuilding("vault",3,3);
     public static Block core = new PlayerBuilding("core",4,4);
 
+    public static ArrayList<Blocks> getAllBlocks() {
+        ArrayList<Blocks> blocksArray = new ArrayList<>();
 
+        Field[] fields = Blocks.class.getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                if (field.getType().equals(Blocks.class)) {
+                    Blocks block = (Blocks) field.get(null);
+                    blocksArray.add(block);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return blocksArray;
+    }
 }

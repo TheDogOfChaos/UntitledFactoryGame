@@ -22,5 +22,8 @@ import io.thedogofchaos.fmp.world.blocks.environment.*;
 public class AirBlock extends Floor{
     public AirBlock(String name) {
         super(name);
+        isNatural = true;
+        isBreakable = false;
+        isSolid = false;
     }
 }

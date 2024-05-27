@@ -17,16 +17,20 @@
 
 package io.thedogofchaos.fmp.game;
 
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.physics.box2d.*;
 import io.thedogofchaos.fmp.*;
+import io.thedogofchaos.fmp.content.*;
 import io.thedogofchaos.fmp.world.blocks.*;
 
 import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Build{
     public static String currentSelectedBuilding;
-    public static void placeBlock(int posX, int posY, float width, float height){
+    private static Block blockToRemove;
+
+    public static void placeBlock(Block block, int posX, int posY, float width, float height){
         Block.blockBodyDef = new BodyDef();
         Block.blockBodyDef.type = BodyDef.BodyType.StaticBody;
         Block.blockBodyDef.position.set(new Vector2((posX*16), (posY*16)));
@@ -36,9 +40,31 @@ public class Build{
         PolygonShape blockBox = new PolygonShape();
         blockBox.setAsBox(width, height);
         Block.blockBody.createFixture(blockBox, 0.0f);
-        Vars.playerBuildings[posX][posY] = Block.blockBody;
+        if (block.isNatural && block.isSolid){
+            Vars.mapWall[posX][posY] = block;
+        } else if (block.isPlaceableByPlayer){
+            Vars.playerBuildings[posX][posY] = block;
+        } else if (block != Blocks.air){
+            Gdx.app.error("ERROR","Invalid block '"+block+"'attempted to be placed at: "+posX+", "+posY);
+        }
         blockBox.dispose();
     }
-    public static void removeBlock(){
+    public static void removeBlock(int posX, int posY){
+        if (Vars.mapWall[posX][posY] != Blocks.air) {
+            blockToRemove = Vars.mapWall[posX][posY];
+            Vars.mapWall[posX][posY] = Blocks.air;
+        } else if (Vars.playerBuildings[posX][posY] != Blocks.air) {
+            blockToRemove = Vars.playerBuildings[posX][posY];
+            Vars.playerBuildings[posX][posY] = Blocks.air;
+        } else {
+            Gdx.app.log("INFO", "No block found at: " + posX + ", " + posY);
+            return;
+        }
+
+        // If a block was found, remove its physical body
+        if (blockToRemove != null && blockToRemove.blockBody != null) {
+            world.destroyBody(blockToRemove.blockBody);
+            blockToRemove.blockBody = null;
+        }
     }
 }

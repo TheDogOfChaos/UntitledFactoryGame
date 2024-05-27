@@ -37,8 +37,10 @@ public class Block {
     public boolean isPlaceableOn = true;
     public boolean isPlaceableByPlayer = false;
     public boolean isBreakable;
+    public boolean isSolid;
     public boolean isWalkableOn = true;
     public boolean isDynamic = false;
+    public boolean isNatural;
 
     public Block(String name, int blockWidth, int blockHeight) {
         this.name = name;
