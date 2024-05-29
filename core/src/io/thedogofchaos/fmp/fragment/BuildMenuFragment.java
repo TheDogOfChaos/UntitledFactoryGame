@@ -18,6 +18,7 @@
 package io.thedogofchaos.fmp.fragment;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -26,9 +27,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.content.Blocks;
+import io.thedogofchaos.fmp.game.*;
+import io.thedogofchaos.fmp.utils.*;
 import io.thedogofchaos.fmp.world.blocks.Block;
-
-import java.util.*;
 
 public class BuildMenuFragment implements Disposable {
 
@@ -41,23 +42,33 @@ public class BuildMenuFragment implements Disposable {
     }
 
     public static void show() {
-        for (int i = 0; i < Blocks.getAllBlocks().size(); i++) {
+        for (Block block : Blocks.allBlocks) {
+            int index = java.util.Arrays.asList(Blocks.allBlocks).indexOf(block);
             // Note: This probably isn't the best way of doing this but i have to get this project in a playable state very soon, so too bad!
-
-            ImageButton blockButton = new ImageButton(new TextureRegionDrawable(Blocks.getAllBlocks().get(i).blockTextureRegion));
-            blockButton.setTransform(true);
-            blockButton.setOrigin(blockButton.getPrefWidth() / 2, blockButton.getPrefHeight() / 2);
-            blockButton.setScale(1f,1f);
-            blockButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    Gdx.app.log("HEHEHE","fuck");
+            if (block.isPlaceableByPlayer){
+                if (Blocks.allBlocks[index].blockTextureRegion == Vars.fallbackTexture) {
+                    Gdx.app.error("BuildMenuFragment", "Using fallback texture for block index: " + index + ", name: " + Blocks.allBlocks[index].name);
                 }
-            });
-            buildMenuTable.add(blockButton);
+                ImageButton blockButton = getImageButton(index);
+                buildMenuTable.add(blockButton);
+            }
         }
     }
 
+    private static ImageButton getImageButton(int index){
+        ImageButton blockButton = new ImageButton(TextureUtils.resizeDrawable(Blocks.allBlocks[index].blockTextureRegion,32,32));
+        blockButton.setTransform(true);
+        blockButton.setOrigin(blockButton.getPrefWidth() / 2, blockButton.getPrefHeight() / 2);
+        blockButton.setScale(1f, 1f);
+        blockButton.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor){
+                Build.currentSelectedBuilding = Blocks.allBlocks[index];
+                Gdx.app.log("BuildMenuFragment",Build.currentSelectedBuilding.name);
+            }
+        });
+        return blockButton;
+    }
 
     @Override
     public void dispose() {

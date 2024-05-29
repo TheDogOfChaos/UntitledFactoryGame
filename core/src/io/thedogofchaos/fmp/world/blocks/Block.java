@@ -17,14 +17,11 @@
 
 package io.thedogofchaos.fmp.world.blocks;
 
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import io.thedogofchaos.fmp.Vars;
-
-import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Block {
     public final String name;
@@ -47,5 +44,10 @@ public class Block {
         this.blockWidth = blockWidth;
         this.blockHeight = blockHeight;
         blockTextureRegion = Vars.worldAtlas.findRegion(name);
+
+        if (blockTextureRegion == null) {
+            Gdx.app.error("Block", "Texture region not found for block: " + name + ". Perhaps you forgot to add it to the atlas? Resorting to fallback.");
+            blockTextureRegion = Vars.fallbackTexture;
+        }
     }
 }

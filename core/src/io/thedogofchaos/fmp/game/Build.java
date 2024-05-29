@@ -27,7 +27,7 @@ import io.thedogofchaos.fmp.world.blocks.*;
 import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Build{
-    public static String currentSelectedBuilding;
+    public static Block currentSelectedBuilding;
     private static Block blockToRemove;
 
     public static void placeBlock(Block block, int posX, int posY, float width, float height){

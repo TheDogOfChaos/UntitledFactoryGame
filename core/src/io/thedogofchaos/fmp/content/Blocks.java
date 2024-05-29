@@ -32,35 +32,19 @@ public class Blocks {
 
     public static Block air = new AirBlock("air");
 
-    public static Block stoneWall = new Wall("stoneWall",2,2);
-    public static Block darkStoneWall = new Wall("darkStoneWall",2,2);
-    public static Block sandStoneWall = new Wall("sandStoneWall",2,2);
-    public static Block iceWall = new Wall("iceWall",2,2);
-    public static Block saltWall = new Wall("saltWall",2,2);
+    public static Block stoneWall = new Wall("stoneWall",2,2){{isNatural=true;}};
+    public static Block darkStoneWall = new Wall("darkStoneWall",2,2){{isNatural=true;}};
+    public static Block sandStoneWall = new Wall("sandStoneWall",2,2){{isNatural=true;}};
+    public static Block iceWall = new Wall("iceWall",2,2){{isNatural=true;}};
+    public static Block saltWall = new Wall("saltWall",2,2){{isNatural=true;}};
 
-    public static Block stoneFloor = new Floor("stoneFloor");
+    public static Block stoneFloor = new Floor("stoneFloor"){{isNatural=true;}};
 
-    public static Block drill = new PlayerBuilding("drill",2,2);
-    public static Block furnace = new PlayerBuilding("furnace",2,2);
-    public static Block conveyor = new PlayerBuilding("conveyor",1,1);
-    public static Block vault = new PlayerBuilding("vault",3,3);
-    public static Block core = new PlayerBuilding("core",4,4);
+    public static Block drill = new PlayerBuilding("drill",2,2){{isNatural=false;}};
+    public static Block furnace = new PlayerBuilding("furnace",2,2){{isNatural=false;}};
+    public static Block conveyor = new PlayerBuilding("conveyor",1,1){{isNatural=false;}};
+    public static Block vault = new PlayerBuilding("vault",3,3){{isNatural=false;}};
+    public static Block core = new PlayerBuilding("core",4,4){{isNatural=false;}};
 
-    public static ArrayList<Blocks> getAllBlocks() {
-        ArrayList<Blocks> blocksArray = new ArrayList<>();
-
-        Field[] fields = Blocks.class.getDeclaredFields();
-        for (Field field : fields) {
-            try {
-                if (field.getType().equals(Blocks.class)) {
-                    Blocks block = (Blocks) field.get(null);
-                    blocksArray.add(block);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return blocksArray;
-    }
+    public static Block[] allBlocks ={air,stoneWall,darkStoneWall,sandStoneWall,iceWall,saltWall,stoneFloor,drill,furnace,conveyor,vault,core};
 }

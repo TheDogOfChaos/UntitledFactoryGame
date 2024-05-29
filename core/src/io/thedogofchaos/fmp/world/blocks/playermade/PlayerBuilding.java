@@ -24,5 +24,6 @@ public class PlayerBuilding extends Wall{
         super(name, blockWidth, blockHeight);
         isBreakable = true;
         isPlaceableByPlayer = true;
+        isNatural = false;
     }
 }

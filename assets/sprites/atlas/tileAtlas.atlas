@@ -1,27 +1,53 @@
 tileAtlas.png
-	size: 64, 64
+	size: 128, 128
 	repeat: none
 air
+	bounds: 96, 80, 16, 16
+conveyor
 	bounds: 48, 48, 16, 16
-darkStoneWall
-	bounds: 16, 32, 16, 16
-iceFloor
-	bounds: 16, 16, 16, 16
-iceWall
+conveyor1
+	bounds: 96, 112, 16, 16
+conveyor2
+	bounds: 80, 32, 16, 16
+conveyor3
+	bounds: 32, 0, 16, 16
+conveyor4
+	bounds: 80, 16, 16, 16
+conveyor5
+	bounds: 64, 16, 16, 16
+conveyor6
 	bounds: 16, 0, 16, 16
+conveyor7
+	bounds: 112, 80, 16, 16
+core
+	bounds: 0, 64, 64, 64
+darkStoneWall
+	bounds: 48, 16, 16, 16
+drill
+	bounds: 64, 64, 32, 32
+furnace
+	bounds: 64, 96, 32, 32
+iceFloor
+	bounds: 112, 96, 16, 16
+iceWall
+	bounds: 48, 0, 16, 16
 ohno
-	bounds: 16, 48, 16, 16
+	bounds: 112, 112, 16, 16
+player_placeholder
+	bounds: 64, 48, 16, 16
 saltFloor
-	bounds: 0, 0, 16, 16
+	bounds: 64, 32, 16, 16
 saltWall
-	bounds: 0, 32, 16, 16
-sandStoneFloor
-	bounds: 32, 32, 16, 16
-sandStoneWall
-	bounds: 0, 16, 16, 16
-stoneFloor
-	bounds: 0, 48, 16, 16
-stoneWall
 	bounds: 48, 32, 16, 16
+sandStoneFloor
+	bounds: 96, 64, 16, 16
+sandStoneWall
+	bounds: 96, 96, 16, 16
+stoneFloor
+	bounds: 0, 0, 16, 16
+stoneWall
+	bounds: 64, 0, 16, 16
+vault
+	bounds: 0, 16, 48, 48
 waterFloor
-	bounds: 32, 48, 16, 16
+	bounds: 80, 48, 16, 16
