@@ -40,6 +40,9 @@ public class Vars {
     public static boolean ingameDebugInfo = false; // Enables the debug information. Flipped in GameInputs.java by pressing the F3 key.
     public static boolean stageDebugMode = false; // Enables the debug view of Stages.
 
+    public static int mousePosX;
+    public static int mousePosY;
+
 
     private static TextureRegion createFallbackTexture() {
         String base64Image = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYVpQ0NQSUNDIHByb2ZpbGUAACiRfZE9SMNAHMVf00pFqh3sIOKQoTpZkCoiuEgVi2ChtBVadTC59AuaNCQtLo6Ca8HBj8Wqg4uzrg6ugiD4AeLs4KToIiX+Lym0iPHguB/v7j3u3gFCs8JU0zcBqFrNSMVjYja3Kvpf4UMQA4hiVmKmnkgvZuA6vu7h4etdhGe5n/tz9Ct5kwEekXiO6UaNeIN4erOmc94nDrGSpBCfE48bdEHiR67LDr9xLtos8MyQkUnNE4eIxWIXy13MSoZKPEUcVlSN8oWswwrnLc5qpc7a9+QvDOS1lTTXaY4gjiUkkIQIGXWUUUENEVo1UkykaD/m4h+2/UlyyeQqg5FjAVWokGw/+B/87tYsTEadpEAM6HmxrI9RwL8LtBqW9X1sWa0TwPsMXGkdf7UJzHyS3uho4SMguA1cXHc0eQ+43AGGnnTJkGzJS1MoFID3M/qmHDB4C/StOb2193H6AGSoq+Ub4OAQGCtS9rrLu3u7e/v3TLu/H/a4ctzi425UAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH6AQPDwUrQbfP4QAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAABqSURBVDhPxVFJCgAhDLOD//+yTl0g3UTowd5ampCF2j8lMV8CO6BpgioUEElB2x3fA6eSgOEIQjokB7J7CwxyVFgF2oY0ZTZ6XmPcAvrVto4h7rA8kBPifQsmvnmwLQSPRStaf+9bSGfQAef5JBZAV74nAAAAAElFTkSuQmCC";

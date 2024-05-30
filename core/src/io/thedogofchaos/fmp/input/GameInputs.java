@@ -17,8 +17,7 @@
 
 package io.thedogofchaos.fmp.input;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.math.Vector2;
 import io.thedogofchaos.fmp.Vars;
 import io.thedogofchaos.fmp.world.Player;
@@ -81,7 +80,15 @@ public class GameInputs extends InputAdapter {
     }
 
     @Override
-    public boolean mouseMoved (int x, int y) {
+    public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+        Gdx.app.log("GameInputs", screenX+", "+screenY+", "+pointer+", "+button);
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved (int screenX, int screenY) {
+        Vars.mousePosX = screenX;
+        Vars.mousePosY = -screenY;
         return false;
     }
 }

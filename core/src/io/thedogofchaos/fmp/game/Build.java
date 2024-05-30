@@ -18,6 +18,8 @@
 package io.thedogofchaos.fmp.game;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.physics.box2d.*;
 import io.thedogofchaos.fmp.*;
@@ -28,7 +30,9 @@ import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Build{
     public static Block currentSelectedBuilding;
-    private static Block blockToRemove;
+    public static Block blockToRemove;
+    public static boolean readyToPlace;
+    public static Sprite preview;
 
     public static void placeBlock(Block block, int posX, int posY, float width, float height){
         Block.blockBodyDef = new BodyDef();
@@ -45,7 +49,7 @@ public class Build{
         } else if (block.isPlaceableByPlayer){
             Vars.playerBuildings[posX][posY] = block;
         } else if (block != Blocks.air){
-            Gdx.app.error("ERROR","Invalid block '"+block+"'attempted to be placed at: "+posX+", "+posY);
+            Gdx.app.error("Build","Invalid block '"+block+"'attempted to be placed at: "+posX+", "+posY);
         }
         blockBox.dispose();
     }
@@ -57,7 +61,7 @@ public class Build{
             blockToRemove = Vars.playerBuildings[posX][posY];
             Vars.playerBuildings[posX][posY] = Blocks.air;
         } else {
-            Gdx.app.log("INFO", "No block found at: " + posX + ", " + posY);
+            Gdx.app.log("Build", "No block found at: " + posX + ", " + posY);
             return;
         }
 
@@ -66,5 +70,16 @@ public class Build{
             world.destroyBody(blockToRemove.blockBody);
             blockToRemove.blockBody = null;
         }
+    }
+
+    public static void prepareBuilding(){
+        if (currentSelectedBuilding == null){
+            Gdx.app.error("Build","currentSelectedBuilding is null!");
+            return;
+        }
+        preview = new Sprite(currentSelectedBuilding.blockTextureRegion);
+        preview.setAlpha(0.75f);
+        preview.setOrigin(currentSelectedBuilding.blockWidth*16, currentSelectedBuilding.blockHeight*16);
+        readyToPlace = true;
     }
 }

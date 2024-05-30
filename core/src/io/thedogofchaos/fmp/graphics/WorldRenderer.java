@@ -18,38 +18,47 @@
 package io.thedogofchaos.fmp.graphics;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.thedogofchaos.fmp.Vars;
+import io.thedogofchaos.fmp.*;
 import io.thedogofchaos.fmp.input.GameInputs;
 import io.thedogofchaos.fmp.screen.GameWorld;
 import io.thedogofchaos.fmp.world.Player;
 import io.thedogofchaos.fmp.world.WorldTicker;
+import io.thedogofchaos.fmp.game.Build;
+
+import java.util.*;
 
 import static io.thedogofchaos.fmp.UntitledFactoryGame.*;
 import static io.thedogofchaos.fmp.UntitledFactoryGame.spriteBatch;
 
 public class WorldRenderer implements Disposable {
-
+    static final int GRID_SIZE = 16;
     public static void RenderWorld(){
+        Vector3 worldCoordinates = gameCamera.unproject(new Vector3(Vars.mousePosX, Vars.mousePosY, 0));
         ScreenUtils.clear(0,0,0, 1f);
         gameCamera.position.set(Player.playerBody.getPosition().x-8, Player.playerBody.getPosition().y-8, 0);
         gameCamera.update();
         spriteBatch.begin();
         for (int x = 0; x < Vars.mapWidth; x++) {
             for (int y = 0; y < Vars.mapHeight; y++) {
-                // draws floors
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapFloor[x][y].name), (x * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().x, (y * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().y - 80);
-            }
-        }
-        for (int x = 0; x < Vars.mapWidth; x++) {
-            for (int y = 0; y < Vars.mapHeight; y++) {
-                // draws walls
-                spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapWall[x][y].name), (x * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().x, (y * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().y - 80);
+               // this draws floors
+               if (!Objects.equals(Vars.mapWall[x][y].name, "airBlock")){
+                   spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapFloor[x][y].name), (x * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().x, (y * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().y - 80);
+               }
+               // this draws walls
+               spriteBatch.draw(Vars.worldAtlas.findRegion(Vars.mapWall[x][y].name), (x * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().x, (y * 16) + (Gdx.graphics.getWidth() / 2f) - Player.playerBody.getPosition().y - 80);
             }
         }
 
         spriteBatch.draw(Player.playerSprite, (float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
+
+        if (Build.readyToPlace){
+            Build.preview.setPosition(snapToGrid(worldCoordinates.x, GRID_SIZE),snapToGrid(worldCoordinates.y, GRID_SIZE));
+            Build.preview.draw(spriteBatch);
+        }
         bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, Gdx.graphics.getHeight()-10);
         if (Vars.ultimateDebugMode || Vars.ingameDebugInfo) {
             bitmapFont.draw(spriteBatch, "Player in-game XY Co-ords:" + (int) Player.playerBody.getPosition().x/16 + ", " + (int) Player.playerBody.getPosition().y/16, 10, 20);
@@ -63,6 +72,10 @@ public class WorldRenderer implements Disposable {
         WorldTicker.tickWorld();
         GameWorld.worldStage.act(Gdx.graphics.getDeltaTime());
         GameWorld.worldStage.draw();
+    }
+
+    public static float snapToGrid(float value, int gridSize) {
+        return Math.round(value / gridSize) * gridSize;
     }
 
     @Override

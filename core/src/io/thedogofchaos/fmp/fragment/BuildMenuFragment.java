@@ -64,6 +64,7 @@ public class BuildMenuFragment implements Disposable {
             @Override
             public void changed(ChangeEvent event, Actor actor){
                 Build.currentSelectedBuilding = Blocks.allBlocks[index];
+                Build.prepareBuilding();
                 Gdx.app.log("BuildMenuFragment",Build.currentSelectedBuilding.name);
             }
         });
