@@ -19,6 +19,7 @@ package io.thedogofchaos.fmp.world.blocks;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import io.thedogofchaos.fmp.Vars;
@@ -28,8 +29,11 @@ public class Block {
     public TextureRegion blockTextureRegion;
     public static BodyDef blockBodyDef;
     public static Body blockBody;
+
     public final int blockWidth;
     public final int blockHeight;
+
+    public final Vector2 blockIngamePos;
 
     public boolean isPlaceableOn = true;
     public boolean isPlaceableByPlayer = false;
@@ -39,11 +43,12 @@ public class Block {
     public boolean isDynamic = false;
     public boolean isNatural;
 
-    public Block(String name, int blockWidth, int blockHeight) {
+    public Block(String name, int blockWidth, int blockHeight, Vector2 blockInGamePos) {
         this.name = name;
         this.blockWidth = blockWidth;
         this.blockHeight = blockHeight;
         blockTextureRegion = Vars.worldAtlas.findRegion(name);
+        this.blockIngamePos = blockInGamePos;
 
         if (blockTextureRegion == null) {
             Gdx.app.error("Block", "Texture region not found for block: " + name + ". Perhaps you forgot to add it to the atlas? Resorting to fallback.");

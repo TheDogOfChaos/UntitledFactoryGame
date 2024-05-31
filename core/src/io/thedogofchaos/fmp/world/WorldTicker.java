@@ -17,11 +17,15 @@
 
 package io.thedogofchaos.fmp.world;
 
+import com.badlogic.gdx.*;
+import io.thedogofchaos.fmp.*;
 import io.thedogofchaos.fmp.input.GameInputs;
 import io.thedogofchaos.fmp.screen.GameWorld;
 
 public class WorldTicker {
     public static void tickWorld(){
+        Vars.mousePosX = Gdx.input.getX();
+        Vars.mousePosY = Gdx.input.getY();
         GameInputs.isPlayerMoving = !GameInputs.currentKeys.isEmpty() || (GameInputs.velX==0 && GameInputs.velY==0);
         Player.playerBody.setLinearVelocity(GameInputs.velX * Player.movementSpeedMultiplier, GameInputs.velY * Player.movementSpeedMultiplier);
 

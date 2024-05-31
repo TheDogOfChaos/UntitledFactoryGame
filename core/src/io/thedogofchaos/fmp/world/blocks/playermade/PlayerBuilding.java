@@ -17,11 +17,12 @@
 
 package io.thedogofchaos.fmp.world.blocks.playermade;
 
+import com.badlogic.gdx.math.*;
 import io.thedogofchaos.fmp.world.blocks.environment.*;
 
 public class PlayerBuilding extends Wall{
-    public PlayerBuilding(String name, int blockWidth, int blockHeight){
-        super(name, blockWidth, blockHeight);
+    public PlayerBuilding(String name, int blockWidth, int blockHeight, Vector2 blockInGamePos){
+        super(name, blockWidth, blockHeight, blockInGamePos);
         isBreakable = true;
         isPlaceableByPlayer = true;
         isNatural = false;

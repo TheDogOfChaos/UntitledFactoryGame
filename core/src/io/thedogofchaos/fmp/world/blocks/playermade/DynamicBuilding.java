@@ -21,12 +21,13 @@
 
 package io.thedogofchaos.fmp.world.blocks.playermade;
 
+import com.badlogic.gdx.math.*;
 import dev.dewy.nbt.tags.collection.CompoundTag;
 
 public class DynamicBuilding extends PlayerBuilding{
     public static CompoundTag dynamicBuildingData; // Note: I may or may not use NBT.
-    public DynamicBuilding(String name, int blockWidth, int blockHeight){
-        super(name, blockWidth, blockHeight);
+    public DynamicBuilding(String name, int blockWidth, int blockHeight, Vector2 blockInGamePos){
+        super(name, blockWidth, blockHeight, blockInGamePos);
         isDynamic = true;
     }
 }

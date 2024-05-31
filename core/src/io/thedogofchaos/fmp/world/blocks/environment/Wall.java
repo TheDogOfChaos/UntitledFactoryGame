@@ -17,11 +17,12 @@
 
 package io.thedogofchaos.fmp.world.blocks.environment;
 
+import com.badlogic.gdx.math.*;
 import io.thedogofchaos.fmp.world.blocks.Block;
 
 public class Wall extends Block {
-    public Wall(String name, int blockWidth, int blockHeight){
-        super(name, blockWidth, blockHeight);
+    public Wall(String name, int blockWidth, int blockHeight, Vector2 blockInGamePos){
+        super(name, blockWidth, blockHeight, blockInGamePos);
         isBreakable = false;
         isWalkableOn = false;
         isSolid = true;

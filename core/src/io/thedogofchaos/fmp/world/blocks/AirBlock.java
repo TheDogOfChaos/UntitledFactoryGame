@@ -17,11 +17,12 @@
 
 package io.thedogofchaos.fmp.world.blocks;
 
+import com.badlogic.gdx.math.*;
 import io.thedogofchaos.fmp.world.blocks.environment.*;
 
 public class AirBlock extends Floor{
-    public AirBlock(String name) {
-        super(name);
+    public AirBlock(String name, Vector2 blockInGamePos) {
+        super(name, blockInGamePos);
         isNatural = true;
         isBreakable = false;
         isSolid = false;

@@ -84,11 +84,4 @@ public class GameInputs extends InputAdapter {
         Gdx.app.log("GameInputs", screenX+", "+screenY+", "+pointer+", "+button);
         return false;
     }
-
-    @Override
-    public boolean mouseMoved (int screenX, int screenY) {
-        Vars.mousePosX = screenX;
-        Vars.mousePosY = -screenY;
-        return false;
-    }
 }

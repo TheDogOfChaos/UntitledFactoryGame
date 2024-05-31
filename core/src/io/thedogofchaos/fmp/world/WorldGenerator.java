@@ -36,6 +36,7 @@ public class WorldGenerator {
         x=0;y=0;
         for (int i = 0; i < (mapWidth * mapHeight); i++) {
             mapFloor[x][y] = Blocks.stoneFloor;
+            mapFloor[x][y].blockIngamePos.set(x,y);
             x++;
             if (x == mapWidth) {
                 y++;
@@ -50,6 +51,7 @@ public class WorldGenerator {
                     Build.placeBlock(Blocks.darkStoneWall, x, y, 8f, 8f);
                 } else {
                     mapWall[x][y] = Blocks.air;
+                    mapWall[x][y].blockIngamePos.set(x,y);
                 }
                 x++;
                 if (x == mapWidth) {

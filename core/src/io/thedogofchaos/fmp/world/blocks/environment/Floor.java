@@ -17,11 +17,12 @@
 
 package io.thedogofchaos.fmp.world.blocks.environment;
 
+import com.badlogic.gdx.math.*;
 import io.thedogofchaos.fmp.world.blocks.Block;
 
 public class Floor extends Block {
-    public Floor(String name) {
-        super(name,1,1);
+    public Floor(String name, Vector2 blockInGamePos) {
+        super(name,1,1, blockInGamePos);
         isPlaceableOn = true;
         isWalkableOn = true;
     }

@@ -26,6 +26,7 @@ import io.thedogofchaos.fmp.*;
 import io.thedogofchaos.fmp.content.*;
 import io.thedogofchaos.fmp.world.blocks.*;
 
+import static io.thedogofchaos.fmp.Vars.mapFloor;
 import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Build{
@@ -46,8 +47,10 @@ public class Build{
         Block.blockBody.createFixture(blockBox, 0.0f);
         if (block.isNatural && block.isSolid){
             Vars.mapWall[posX][posY] = block;
+            Vars.mapWall[posX][posY].blockIngamePos.set(posX,posY);
         } else if (block.isPlaceableByPlayer){
             Vars.playerBuildings[posX][posY] = block;
+            Vars.playerBuildings[posX][posY].blockIngamePos.set(posX,posY);
         } else if (block != Blocks.air){
             Gdx.app.error("Build","Invalid block '"+block+"'attempted to be placed at: "+posX+", "+posY);
         }

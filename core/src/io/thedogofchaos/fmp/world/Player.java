@@ -27,8 +27,6 @@ import io.thedogofchaos.fmp.content.Blocks;
 import static io.thedogofchaos.fmp.screen.GameWorld.world;
 
 public class Player {
-    // TODO: fucking implement collision detection for gods sake
-    // TODO: also make a proper sprite for the player
     public static Texture playerSprite;
     public static int movementSpeed = 50;
     public static int movementSpeedMultiplier = 2;

@@ -56,7 +56,7 @@ public class WorldRenderer implements Disposable {
         spriteBatch.draw(Player.playerSprite, (float) Gdx.graphics.getWidth() /2, (float) Gdx.graphics.getHeight() /2);
 
         if (Build.readyToPlace){
-            Build.preview.setPosition(snapToGrid(worldCoordinates.x, GRID_SIZE),snapToGrid(worldCoordinates.y, GRID_SIZE));
+            Build.preview.setPosition(snapToGrid(worldCoordinates.x, GRID_SIZE)+gameCamera.position.x,snapToGrid(worldCoordinates.y, GRID_SIZE)+gameCamera.position.y);
             Build.preview.draw(spriteBatch);
         }
         bitmapFont.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, Gdx.graphics.getHeight()-10);
