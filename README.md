@@ -1,4 +1,5 @@
 # Untitled Factory Game
+[![Gradle Package](https://github.com/TheDogOfChaos/UntitledFactoryGame/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/TheDogOfChaos/UntitledFactoryGame/actions/workflows/gradle-publish.yml)
 
 a factory game thing that i'm working on
 
